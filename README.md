@@ -31,6 +31,9 @@ Mon: after 5p | Tues: after 11a | Wed: after 5p | Thurs: after 12p | Fri: after 
 
 Logan Heller  
 Mon: after 5p | Tues: not available | Wed: After 5p | Thurs: After 2p | Fri - Sun: Not available
+
+Mina:  
+Mon: after 5p | Tues: all day| Wed: from 2 to 3p | Thurs: 12p to 3p| Fri: from 12p to 4p| Sat & Sun: whenever
  
 **How will work be divided among team members?**
 
@@ -73,4 +76,5 @@ Using the following table
 |---|---|---|---|---|
 | 1 | 12PM-1:50PM, 10/08 | MCT162 | All members | Meet the team |
 | 2 | 12PM-1:50pm, 10/17 | MCT162 | All members | Go over lab 4 |
+| 3 | 12PM-1:50pm, 10/24 | MCT162 | All members | Go over lab 5 |
 
