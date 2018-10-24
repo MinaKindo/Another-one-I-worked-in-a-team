@@ -34,15 +34,17 @@ public class Cell {
   /**
    * @author dh3187
    * @param weapon
-   * @return
+   * @return true if weapon was added, false if not
    */
   public boolean addWeapon(Weapon weapon) {
     if (weapon1 == null) {
       weapon1 = weapon;
+      weaponsCount++;
       return true;
     } else {
       if (weapon2 == null) {
         weapon2 = weapon;
+        weaponsCount++;
         return true;
       } else {
         return false;
@@ -59,7 +61,7 @@ public class Cell {
   
   /**
    * @author dh3187
-   * @return
+   * @return weapon1
    */
   public Weapon getWeapon1() {
     return weapon1;
@@ -67,7 +69,7 @@ public class Cell {
   
   /**
    * @author dh3187
-   * @return
+   * @return weapon2
    */
   public Weapon getWeapon2() {
     return weapon2;
@@ -75,7 +77,7 @@ public class Cell {
   
   /**
    * @author dh3187
-   * @return
+   * @return number of weapons in cell
    */
   public int getWeaponsCount() {
     return weaponsCount;
