@@ -1,6 +1,7 @@
 package environment;
 
 import lifeform.LifeForm;
+import weapon.Weapon;
 
 /**
  * A cell that can hold a LifeForm.
@@ -9,6 +10,9 @@ import lifeform.LifeForm;
 public class Cell {
 
   private LifeForm lifeForm;
+  private int weaponsCount;
+  private Weapon weapon1;
+  private Weapon weapon2;
 
   /**
    * Tries to add the LifeForm of the Cell. Will not add if a LifeForm is already
@@ -28,13 +32,67 @@ public class Cell {
   }
 
   /**
+   * @author dh3187
+   * @param weapon
+   * @return true if weapon was added, false if not
+   */
+  public boolean addWeapon(Weapon weapon) {
+    if (weapon1 == null) {
+      weapon1 = weapon;
+      weaponsCount++;
+      return true;
+    } else {
+      if (weapon2 == null) {
+        weapon2 = weapon;
+        weaponsCount++;
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+  
+  /**
    * @return the LifeForm in this Cell.
    */
   public LifeForm getLifeForm() {
     return lifeForm;
   }
+  
+  /**
+   * @author dh3187
+   * @return weapon1
+   */
+  public Weapon getWeapon1() {
+    return weapon1;
+  }
+  
+  /**
+   * @author dh3187
+   * @return weapon2
+   */
+  public Weapon getWeapon2() {
+    return weapon2;
+  }
+  
+  /**
+   * @author dh3187
+   * @return number of weapons in cell
+   */
+  public int getWeaponsCount() {
+    return weaponsCount;
+  }
 
   public void removeLifeForm() {
     lifeForm = null;
+  }
+  
+  /**
+   * @author dh3187
+   * @param weapon
+   * @return
+   */
+  public Weapon removeWeapon(Weapon weapon) {
+    return weapon;
   }
 }
