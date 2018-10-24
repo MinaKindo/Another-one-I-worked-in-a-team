@@ -1,6 +1,7 @@
 package environment;
 
 import lifeform.LifeForm;
+import weapon.Weapon;
 
 /**
  * A cell that can hold a LifeForm.
@@ -9,6 +10,8 @@ import lifeform.LifeForm;
 public class Cell {
 
   private LifeForm lifeForm;
+  private Weapon weapon1; //first weapon in cell
+  private Weapon weapon2; //second weapon in cell
 
   /**
    * Tries to add the LifeForm of the Cell. Will not add if a LifeForm is already
@@ -36,5 +39,16 @@ public class Cell {
 
   public void removeLifeForm() {
     lifeForm = null;
+  }
+  
+  /**
+   * 
+   * @param weapon
+   * @return true if the weapon is added successfully
+   */
+  public boolean addWeapon​(Weapon weapon) {
+    boolean status = false;
+    if (weapon1 == null || weapon2 == null)
+    return status;
   }
 }
