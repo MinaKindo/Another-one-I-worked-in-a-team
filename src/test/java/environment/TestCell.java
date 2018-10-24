@@ -15,6 +15,7 @@ import lifeform.MockLifeForm;
  * 
  */
 public class TestCell {
+  
   /**
    * At initialization, the Cell should be empty and not contain a LifeForm.
    */
@@ -22,7 +23,13 @@ public class TestCell {
   public void testInitialization() {
     Cell cell = new Cell();
     assertNull(cell.getLifeForm());
+    assertNull(cell.getWeapon1());
+    assertNull(cell.getWeapon2());
   }
+  
+  /**
+   * Beginning of Decorator Pattern tests
+   */
 
   /**
    * Checks to see if we change the LifeForm held by the Cell that getLifeForm
