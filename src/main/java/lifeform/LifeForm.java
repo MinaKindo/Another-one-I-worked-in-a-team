@@ -13,6 +13,9 @@ public abstract class LifeForm {
   protected int currentLifePoints;
   private int attackStrength;
   protected Weapon weapon;
+  
+  protected int row = -1;
+  protected int col = -1;
 
   /**
    * Create an instance
@@ -138,5 +141,23 @@ public abstract class LifeForm {
     if (weapon.getCurrentAmmo() != weapon.getMaxAmmo()) {
       weapon.reload();
     }
+  }
+  
+  public void setLocation(int row, int col) {
+    if (row < 0 || col < 0) {
+      this.row = -1;
+      this.col = -1;
+    } else {
+      this.row = row;
+      this.col = col;
+    }
+  }
+  
+  public int getRow() {
+    return row;
+  }
+  
+  public int getCol() {
+    return col;
   }
 }
