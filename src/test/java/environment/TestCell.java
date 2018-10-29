@@ -87,11 +87,13 @@ public class TestCell {
   @Test
   public void testNoMoreThanTwoWeapon() throws AttachmentException {
     Cell cell = new Cell();
-    Weapon pistol = new Pistol();
+    Weapon pistol1 = new Pistol();
+    Weapon pistol2 = new Pistol();
+    Weapon pistol3 = new Pistol();
     //try adding three weapon to the cell
-    assertTrue(cell.addWeapon(pistol)); //should be true
-    assertTrue(cell.addWeapon(pistol)); //should be true
-    assertFalse(cell.addWeapon(pistol)); //should be false  
+    assertTrue(cell.addWeapon(pistol1)); //should be true
+    assertTrue(cell.addWeapon(pistol2)); //should be true
+    assertFalse(cell.addWeapon(pistol3)); //should be false  
   }
   
   /**

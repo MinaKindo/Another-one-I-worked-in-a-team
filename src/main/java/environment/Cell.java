@@ -33,7 +33,6 @@ public class Cell {
 
   /**
    * @author dh3187
-   * @edited aa1184  : added code to avoid same weapon to be added in 2 different slot
    * @param weapon
    * @return true if weapon was added, false if not
    */
