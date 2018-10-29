@@ -42,7 +42,7 @@ public class Cell {
       weaponsCount++;
       return true;
     } else {
-      if (weapon2 == null) {
+      if (weapon2 == null && weapon1 != weapon) {
         weapon2 = weapon;
         weaponsCount++;
         return true;
