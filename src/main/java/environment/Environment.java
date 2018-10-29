@@ -35,4 +35,27 @@ public class Environment {
   public void removeLifeForm(int row, int col) {
     cells[row][col] = new Cell();
   }
+
+
+  public double getDistance​(int row1, int col1, int row2, int col2) {
+    return 5 * (Math.hypot(Math.abs(row2-row1), Math.abs(col2-col1)));
+  }
+  
+  public double getDistance​(LifeForm lifeform1, LifeForm lifeform2) {
+    //return 5 * (Math.hypot(Math.abs(row2-row1), Math.abs(col2-col1)));
+  }
+  
+  public int getNumCols() {
+    return cells[0].length;
+  }
+  
+  public int getNumRows() {
+    return cells.length;
+  }
+  
+  static Environment getEnvironment(int rows, int cols)
+  {
+    return null;
+    
+  }
 }
