@@ -19,6 +19,41 @@ import weapon.Weapon;
 public class TestLifeForm {
 
   /**
+   * @author ad5146
+   */
+  @Test
+  public void testStoreRowCol() {
+    LifeForm lf = new MockLifeForm("A", 5);
+    lf.setLocation(2, 4);
+    assertEquals(2, lf.getRow());
+    assertEquals(4, lf.getCol());
+  }
+  
+  @Test
+  public void testRowColInitialize() {
+    LifeForm lf = new MockLifeForm("B", 5);
+    assertEquals(-1, lf.getRow());
+    assertEquals(-1, lf.getCol());
+  }
+  
+  @Test
+  public void testNegativeLocation() {
+    LifeForm lf = new MockLifeForm("C", 5);
+    
+    lf.setLocation(-1, 4);
+    assertEquals(-1, lf.getRow());
+    assertEquals(-1, lf.getCol());
+    
+    lf.setLocation(1, -4);
+    assertEquals(-1, lf.getRow());
+    assertEquals(-1, lf.getCol());
+  }
+  
+  /*
+   * Beginning of lab 4 tests
+   */
+  
+  /**
    * @author dh3187
    */
   @Test

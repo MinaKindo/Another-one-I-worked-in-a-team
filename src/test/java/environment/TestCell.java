@@ -7,22 +7,94 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import exceptions.AttachmentException;
 import lifeform.LifeForm;
 import lifeform.MockLifeForm;
+import weapon.ChainGun;
+import weapon.Pistol;
+import weapon.PlasmaCannon;
+import weapon.PowerBooster;
+import weapon.Weapon;
 
 /**
  * The test cases for the Cell class
  * 
  */
 public class TestCell {
+  
   /**
-   * At initialization, the Cell should be empty and not contain a LifeForm.
+   * At initialization, the Cell should be empty and not contain a LifeForm
+   * or weapons.
    */
   @Test
   public void testInitialization() {
     Cell cell = new Cell();
     assertNull(cell.getLifeForm());
+    assertNull(cell.getWeapon1());
+    assertNull(cell.getWeapon2());
   }
+  
+  /**
+   * The cell should be able to hold up to two weapons.
+   */
+  @Test
+  public void testAddWeapons() {
+    Cell cell = new Cell();
+    Weapon w1 = new Pistol();
+    Weapon w2 = new ChainGun();
+    Weapon w3 = new PlasmaCannon();
+    assertEquals(0, cell.getWeaponsCount());
+    assertTrue(cell.addWeapon(w1));
+    assertEquals(w1, cell.getWeapon1());
+    assertEquals(1, cell.getWeaponsCount());
+    assertTrue(cell.addWeapon(w2));
+    assertEquals(w2, cell.getWeapon2());
+    assertEquals(2, cell.getWeaponsCount());
+    assertFalse(cell.addWeapon(w3));
+  }
+  
+  /**
+   * @author aa1184
+   * @throws AttachmentException 
+   * 
+   */
+  @Test
+  public void testCanRemoveOneOrTwoWeapon() throws AttachmentException {
+    Cell cell = new Cell();
+    //create 2 weapon
+    Weapon pistol = new Pistol();
+    Weapon boostedPistol = new PowerBooster(pistol);
+    //add both to cell
+    cell.addWeapon(pistol);
+    cell.addWeapon(boostedPistol);
+    //should be 2
+    assertEquals(2, cell.getWeaponsCount());
+    //remove 1 weapon and check that it had been successfully removed
+    assertEquals(pistol, cell.removeWeapon(pistol));
+    assertEquals(1, cell.getWeaponsCount());
+    //remove other weapon and check that it had been successfully removed
+    assertEquals(boostedPistol, cell.removeWeapon(boostedPistol));
+    assertEquals(0, cell.getWeaponsCount());
+  }
+  
+  /**
+   * @author aa1184
+   * @throws AttachmentException 
+   * 
+   */
+  @Test
+  public void testNoMoreThanTwoWeapon() throws AttachmentException {
+    Cell cell = new Cell();
+    Weapon pistol = new Pistol();
+    //try adding three weapon to the cell
+    assertTrue(cell.addWeapon(pistol)); //should be true
+    assertTrue(cell.addWeapon(pistol)); //should be true
+    assertFalse(cell.addWeapon(pistol)); //should be false  
+  }
+  
+  /**
+   * Beginning of Decorator Pattern tests
+   */
 
   /**
    * Checks to see if we change the LifeForm held by the Cell that getLifeForm
