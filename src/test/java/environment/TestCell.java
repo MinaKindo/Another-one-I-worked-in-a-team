@@ -23,6 +23,7 @@ import weapon.Weapon;
 public class TestCell {
   
   /**
+   * @author dh3187
    * At initialization, the Cell should be empty and not contain a LifeForm
    * or weapons.
    */
@@ -35,6 +36,7 @@ public class TestCell {
   }
   
   /**
+   * @author dh3187
    * The cell should be able to hold up to two weapons.
    */
   @Test
