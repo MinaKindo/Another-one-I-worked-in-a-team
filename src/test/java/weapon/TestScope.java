@@ -51,7 +51,7 @@ public class TestScope {
     cg.currentAmmo = 13;
     Weapon CGPB = new PowerBooster(cg);      //the more ammo it has, the more damage dealt (13 of 40 ammo remain)
     Weapon CGPBScp = new Scope(CGPB);        //Distance 60 >> 70
-    assertEquals(15, CGPBScp.fire(31));
+    assertEquals(14, CGPBScp.fire(31));
     
   }
   

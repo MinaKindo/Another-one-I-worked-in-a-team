@@ -100,6 +100,8 @@ public class Cell {
     } else if (weapon2 == weapon) {
       weapon2 = null;
       weaponsCount--;
+    } else {
+      return null;
     }
     return theRemovedWeapon;
   }

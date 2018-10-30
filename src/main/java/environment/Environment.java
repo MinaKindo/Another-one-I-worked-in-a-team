@@ -1,5 +1,6 @@
 package environment;
 
+import exceptions.EnvironmentException;
 import lifeform.LifeForm;
 import weapon.Weapon;
 
@@ -47,12 +48,12 @@ public class Environment {
      }
   }
   
-  public double getDistance​(int row1, int col1, int row2, int col2) {
+  public double getDistance​(int row1, int col1, int row2, int col2) throws EnvironmentException {
     return 5 * (Math.hypot(Math.abs(row2-row1), Math.abs(col2-col1)));
   }
   
   
-  public double getDistance​(LifeForm lifeform1, LifeForm lifeform2) {
+  public double getDistance​(LifeForm lifeform1, LifeForm lifeform2) throws EnvironmentException {
     return 5 * (Math.hypot(Math.abs(lifeform1.getRow()-lifeform2.getRow()), Math.abs(lifeform1.getCol()-lifeform2.getCol())));
   }
   
