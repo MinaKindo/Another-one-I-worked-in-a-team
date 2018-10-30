@@ -3,6 +3,7 @@ package environment;
 import lifeform.LifeForm;
 import weapon.Weapon;
 
+
 public class Environment {
 
   private Cell[][] cells;
@@ -27,16 +28,23 @@ public class Environment {
   }
 
   public boolean addLifeForm(LifeForm entity, int row, int col) {
+    entity.setLocation(row, col);
     return cells[row][col].addLifeForm(entity);
   }
   
   ////////&****************************
   public boolean addWeapon(Weapon weapon, int row, int col) {
-    return true;
+    return cells[row][col].addWeapon(weapon);
   }
   
   public void clearBoard() {
-    
+    for (int r = 0; r < cells.length; r++) {
+      for (int c = 0; c < cells[0].length; c++) {
+        environment.removeLifeForm(r,c);
+        environment.removeWeapon(cells[r][c].getWeapon1(), r, c);
+        environment.removeWeapon(cells[r][c].getWeapon2(), r, c);   
+      }
+     }
   }
   
   public double getDistance​(int row1, int col1, int row2, int col2) {
@@ -72,8 +80,12 @@ public class Environment {
   }
   
   
-  public Weapon[] getWeapon(int row, int col) {
-    return ;
+  public Weapon[] getWeapons(int row, int col) {
+    Weapon[] weapons = new Weapon[2];
+    
+    weapons[0] = cells[row][col].getWeapon1();
+    weapons[1] = cells[row][col].getWeapon2(); 
+    return weapons;
   }
   
   
@@ -81,7 +93,12 @@ public class Environment {
     cells[row][col] = new Cell();
   }  
   
+  public Weapon removeWeapon(Weapon weapon, int row, int col) {
+     if (row > getNumRows() || col > getNumCols() || row < 0 || col < 0) {
+       return null;
+      } return cells[row][col].removeWeapon(weapon);
+     
+  }
 
-
-
+    
 }
