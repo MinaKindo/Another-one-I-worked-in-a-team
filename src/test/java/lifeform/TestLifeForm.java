@@ -29,6 +29,9 @@ public class TestLifeForm {
     assertEquals(4, lf.getCol());
   }
   
+  /**
+   * @author ad5146
+   */
   @Test
   public void testRowColInitialize() {
     LifeForm lf = new MockLifeForm("B", 5);
@@ -36,6 +39,9 @@ public class TestLifeForm {
     assertEquals(-1, lf.getCol());
   }
   
+  /**
+   * @author ad5146
+   */
   @Test
   public void testNegativeLocation() {
     LifeForm lf = new MockLifeForm("C", 5);
