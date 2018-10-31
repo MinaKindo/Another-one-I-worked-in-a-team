@@ -28,12 +28,12 @@ public class TestEnvironment {
   @Test
   public void testRemoveWeapon() throws AttachmentException {
     ChainGun cg = new ChainGun();
-    Weapon cGScp = new Scope(cg);
-    environment.addWeapon(cGScp, 3, 1);
+    Weapon cgScp = new Scope(cg);
+    environment.addWeapon(cgScp, 3, 1);
     Weapon[] w = environment.getWeapons(3, 1);
-    assertEquals(cGScp, w[0]);
+    assertEquals(cgScp, w[0]);
 
-    environment.removeWeapon(cGScp, 3, 1);
+    environment.removeWeapon(cgScp, 3, 1);
     // assertNull(environment.getWeapons(3, 1));
 
     w = environment.getWeapons(3, 1);

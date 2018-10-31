@@ -13,7 +13,7 @@ public abstract class LifeForm {
   protected int currentLifePoints;
   private int attackStrength;
   protected Weapon weapon;
-  
+
   protected int row = -1;
   protected int col = -1;
 
@@ -142,21 +142,29 @@ public abstract class LifeForm {
       weapon.reload();
     }
   }
-  
+
+  /**
+   * set the location of the LifeForm in the Environment LifeForms should be at
+   * -1, -1 when they are not in the Environment This method should only be used
+   * by the environment so that the row and col inputs are valid
+   * 
+   * @param row anything less than -1 will leave the coordinates UNCHANGED
+   * @param col anything less than -1 will leave the coordinates UNCHANGED
+   */
   public void setLocation(int row, int col) {
-    if (row < 0 || col < 0) {
+    if (row == -1 || col == -1) {
       this.row = -1;
       this.col = -1;
-    } else {
+    } else if (row >= 0 && col >= 0) {
       this.row = row;
       this.col = col;
     }
   }
-  
+
   public int getRow() {
     return row;
   }
-  
+
   public int getCol() {
     return col;
   }
