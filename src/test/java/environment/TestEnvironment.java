@@ -20,36 +20,16 @@ import weapon.Weapon;
 public class TestEnvironment {
   Environment environment = Environment.getEnvironment(4, 4);
 
+  /* lab 5 tests */
+
   @Before
   public void testBefore() {
     environment.clearBoard();
   }
 
-  @Test
-  public void testRemoveWeapon() throws AttachmentException {
-    ChainGun cg = new ChainGun();
-    Weapon cGScp = new Scope(cg);
-    environment.addWeapon(cGScp, 3, 1);
-    Weapon[] w = environment.getWeapons(3, 1);
-    assertEquals(cGScp, w[0]);
-
-    environment.removeWeapon(cGScp, 3, 1);
-    // assertNull(environment.getWeapons(3, 1));
-
-    w = environment.getWeapons(3, 1);
-
-    assertNull(w[0]);
-    assertNull(w[1]);
-  }
-
-  @Test
-  public void testAddWeapon() {
-    // Environment environment = Environment(4, 4);
-    Pistol ptl = new Pistol();
-    assertTrue(environment.addWeapon(ptl, 1, 3));
-    assertEquals(ptl, environment.getWeapons(1, 3)[0]);
-  }
-
+  /**
+   * @author lh9509
+   */
   @Test
   public void testSingletonInitialize() {
     // make sure you can build ONE environment
@@ -62,12 +42,39 @@ public class TestEnvironment {
   }
 
   /**
-   * ^^ Tests for Singleton Pattern start here ^^
-   * 
-   * @author sb0476
+   * @author lh9509
    */
+  @Test
+  public void testAddWeapon() {
+    // Environment environment = Environment(4, 4);
+    Pistol ptl = new Pistol();
+    assertTrue(environment.addWeapon(ptl, 1, 3));
+    assertEquals(ptl, environment.getWeapons(1, 3)[0]);
+  }
 
-  /* lab 5 tests */
+  /**
+   * @author lh9509
+   */
+  @Test
+  public void testRemoveWeapon() throws AttachmentException {
+    ChainGun cg = new ChainGun();
+    Weapon cgScp = new Scope(cg);
+    environment.addWeapon(cgScp, 3, 1);
+    Weapon[] w = environment.getWeapons(3, 1);
+    assertEquals(cgScp, w[0]);
+
+    environment.removeWeapon(cgScp, 3, 1);
+    // assertNull(environment.getWeapons(3, 1));
+
+    w = environment.getWeapons(3, 1);
+
+    assertNull(w[0]);
+    assertNull(w[1]);
+  }
+
+  /**
+   * @author lh9509
+   */
   @Test
   public void testGetDistanceAlongSameRow() throws EnvironmentException {
     // Environment ev = new Environment(4,4);
@@ -75,9 +82,12 @@ public class TestEnvironment {
     LifeForm entity2 = new MockLifeForm("name2", 3);
     environment.addLifeForm(entity1, 2, 2);
     environment.addLifeForm(entity2, 2, 1);
-    assertEquals(5, environment.getDistance​(3, 3, 2, 3), .001);
+    assertEquals(5, environment.getDistance(3, 3, 2, 3), .001);
   }
 
+  /**
+   * @author lh9509
+   */
   @Test
   public void testGetDistanceAlongSameCol() throws EnvironmentException {
     // Environment ev = new Environment(4,4);
@@ -85,18 +95,21 @@ public class TestEnvironment {
     LifeForm entity2 = new MockLifeForm("name2", 3);
     environment.addLifeForm(entity1, 2, 2);
     environment.addLifeForm(entity2, 2, 1);
-    assertEquals(10, environment.getDistance​(3, 1, 3, 3), .001);
+    assertEquals(10, environment.getDistance(3, 1, 3, 3), .001);
   }
 
+  /**
+   * @author lh9509
+   */
   @Test
-  public void getDistanceNotAlongSameRowOrColumn() throws EnvironmentException {
+  public void testGetDistanceNotAlongSameRowOrColumn() throws EnvironmentException {
     // Environment environment = new Environment(4,4);
     LifeForm entity1 = new MockLifeForm("name1", 3);
     LifeForm entity2 = new MockLifeForm("name2", 3);
     environment.addLifeForm(entity1, 3, 3);
     environment.addLifeForm(entity2, 2, 2);
-    assertEquals((5 * Math.sqrt(2)), environment.getDistance​(3, 3, 2, 2), .00001);
-    assertEquals((5 * Math.sqrt(2)), environment.getDistance​(entity1, entity2), .001);
+    assertEquals((5 * Math.sqrt(2)), environment.getDistance(3, 3, 2, 2), .00001);
+    assertEquals((5 * Math.sqrt(2)), environment.getDistance(entity1, entity2), .001);
 
   }
 

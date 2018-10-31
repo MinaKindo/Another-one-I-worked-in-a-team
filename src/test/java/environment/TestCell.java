@@ -21,11 +21,10 @@ import weapon.Weapon;
  * 
  */
 public class TestCell {
-  
+
   /**
-   * @author dh3187
-   * At initialization, the Cell should be empty and not contain a LifeForm
-   * or weapons.
+   * @author dh3187 At initialization, the Cell should be empty and not contain a
+   *         LifeForm or weapons.
    */
   @Test
   public void testInitialization() {
@@ -34,54 +33,56 @@ public class TestCell {
     assertNull(cell.getWeapon1());
     assertNull(cell.getWeapon2());
   }
-  
+
   /**
-   * @author dh3187
-   * The cell should be able to hold up to two weapons.
+   * @author dh3187 The cell should be able to hold up to two weapons.
    */
   @Test
   public void testAddWeapons() {
     Cell cell = new Cell();
+
     Weapon w1 = new Pistol();
-    Weapon w2 = new ChainGun();
-    Weapon w3 = new PlasmaCannon();
     assertEquals(0, cell.getWeaponsCount());
     assertTrue(cell.addWeapon(w1));
     assertEquals(w1, cell.getWeapon1());
     assertEquals(1, cell.getWeaponsCount());
+
+    Weapon w2 = new ChainGun();
     assertTrue(cell.addWeapon(w2));
     assertEquals(w2, cell.getWeapon2());
     assertEquals(2, cell.getWeaponsCount());
+
+    Weapon w3 = new PlasmaCannon();
     assertFalse(cell.addWeapon(w3));
   }
-  
+
   /**
    * @author aa1184
-   * @throws AttachmentException 
+   * @throws AttachmentException
    * 
    */
   @Test
   public void testCanRemoveOneOrTwoWeapon() throws AttachmentException {
     Cell cell = new Cell();
-    //create 2 weapon
+    // create 2 weapon
     Weapon pistol = new Pistol();
     Weapon boostedPistol = new PowerBooster(pistol);
-    //add both to cell
+    // add both to cell
     cell.addWeapon(pistol);
     cell.addWeapon(boostedPistol);
-    //should be 2
+    // should be 2
     assertEquals(2, cell.getWeaponsCount());
-    //remove 1 weapon and check that it had been successfully removed
+    // remove 1 weapon and check that it had been successfully removed
     assertEquals(pistol, cell.removeWeapon(pistol));
     assertEquals(1, cell.getWeaponsCount());
-    //remove other weapon and check that it had been successfully removed
+    // remove other weapon and check that it had been successfully removed
     assertEquals(boostedPistol, cell.removeWeapon(boostedPistol));
     assertEquals(0, cell.getWeaponsCount());
   }
-  
+
   /**
    * @author aa1184
-   * @throws AttachmentException 
+   * @throws AttachmentException
    * 
    */
   @Test
@@ -90,12 +91,12 @@ public class TestCell {
     Weapon pistol1 = new Pistol();
     Weapon pistol2 = new Pistol();
     Weapon pistol3 = new Pistol();
-    //try adding three weapon to the cell
-    assertTrue(cell.addWeapon(pistol1)); //should be true
-    assertTrue(cell.addWeapon(pistol2)); //should be true
-    assertFalse(cell.addWeapon(pistol3)); //should be false  
+    // try adding three weapon to the cell
+    assertTrue(cell.addWeapon(pistol1)); // should be true
+    assertTrue(cell.addWeapon(pistol2)); // should be true
+    assertFalse(cell.addWeapon(pistol3)); // should be false
   }
-  
+
   /**
    * Beginning of Decorator Pattern tests
    */
