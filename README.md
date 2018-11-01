@@ -66,12 +66,11 @@ after the certain lab is finished.)
 Using the following table
 
 | Task | Assignee | Deadline | Progress (date) |
+|--|--|--|--|
 |Game UI|Doris & Aminata||Design Draft due by monday 11/06|
 |Turn & Movement |Logan | | |
 | Invoker 'Builder'|Anthony | | |
 |Commands |Seth | | |
-| | | | |
-| | | | |
 
 
 # Team Meeting Log
