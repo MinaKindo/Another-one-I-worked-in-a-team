@@ -65,12 +65,12 @@ after the certain lab is finished.)
 
 Using the following table
 
-| Task | Assignee | Deadline | Progress (date) |
+| Task | Assignee | Deadline |
 |--|--|--|--|
-|Game UI|Doris & Aminata||Design Draft due by monday 11/06|
-|Turn & Movement |Logan | | |
-| Invoker 'Builder'|Anthony | | |
-|Commands |Seth | | |
+|Game UI|Doris & Aminata| 11/16 |
+|Turn & Movement |Logan | 11/14 |
+| Invoker 'Builder'|Anthony | 11/16 |
+|Commands |Seth | 11/15 |
 
 
 # Team Meeting Log
