@@ -1,6 +1,4 @@
-# Lab 4 Description
-
-Write a brief description here.
+# Lab 6
 
 # Team Contract
 
