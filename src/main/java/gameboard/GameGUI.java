@@ -52,5 +52,13 @@ public class GameGUI extends JFrame {
 		frame.setBounds(1000, 1000, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
+	
+	public int selectedX() {
+    return 0;
+  }
+
+  public int selectedY() {
+    return 0;
+  }
 
 }
