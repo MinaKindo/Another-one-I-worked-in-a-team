@@ -11,7 +11,7 @@ public class GameGUI extends JFrame {
 	private LegendPanel legend; //A panel for the legend
 	private PlayerInfoPanel playerInfo; //A panel for the player Info
 	private BoardPanel board; //A panel for the board
-  protected JFrame frame;
+    protected JFrame frame;
   
 
 	/**

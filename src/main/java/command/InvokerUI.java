@@ -110,6 +110,7 @@ public class InvokerUI extends JFrame implements ActionListener {
 
     this.add(buttons, BorderLayout.SOUTH);
     this.pack();
+    setVisible(true);
   }
 
   @Override
@@ -133,5 +134,10 @@ public class InvokerUI extends JFrame implements ActionListener {
     } else if (e.getSource() == acquireButton) {
       acquireCommand.execute(gameGUI.selectedX(), gameGUI.selectedY());
     }
+  }
+  
+  public static void main(String[] args) {
+    GameGUI gameGUI = new GameGUI();
+    InvokerUI window = new InvokerUI(gameGUI);
   }
 }
