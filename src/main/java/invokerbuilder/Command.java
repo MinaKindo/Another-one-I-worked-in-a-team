@@ -1,5 +1,6 @@
 package invokerbuilder;
 
+import environment.Environment;
 import lifeform.LifeForm;
 import weapon.Weapon;
 
