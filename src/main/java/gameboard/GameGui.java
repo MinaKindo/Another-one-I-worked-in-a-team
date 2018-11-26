@@ -52,6 +52,10 @@ public class GameGui extends JFrame {
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   }
 
+  /**
+   * Return x value of position
+   * @return
+   */
   public int selectedX() {
     return 0;
   }
