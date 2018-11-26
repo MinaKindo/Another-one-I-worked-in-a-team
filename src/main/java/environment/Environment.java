@@ -1,13 +1,18 @@
 package environment;
 
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
+
 import exceptions.EnvironmentException;
 import lifeform.LifeForm;
 import weapon.Weapon;
 
-public class Environment {
+public class Environment implements EnvironmentSubject {
 
   private Cell[][] cells;
   static Environment environment;
+  List<EnvironmentObserver> obs = new ArrayList<>();
 
   /**
    * Creates new Environment
@@ -23,6 +28,16 @@ public class Environment {
         cells[r][c] = new Cell();
       }
     }
+  }
+
+  @Override
+  public void addObserver(EnvironmentObserver o) {
+    obs.add(o);
+  }
+
+  @Override
+  public void notifyObservers(Point[] locs) {
+    obs.forEach(o -> o.updateCells(locs));
   }
 
   /**
