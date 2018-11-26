@@ -13,6 +13,21 @@ import recovery.RecoveryLinear;
 
 public class TestAlien {
 
+	
+  /**
+   * @author lh9509
+   */
+  @Test
+  public void testMaxSpeedHuman() {
+	  Alien entity = null;
+	try {
+      entity = new Alien("Jeb", 10);		  
+	} catch (RecoveryRateException e) {
+	  fail();
+	}
+	assertEquals(2, entity.getCurrentSpeed());
+  }
+  
   @Test
   public void testInitialization() {
     Alien entity = null;

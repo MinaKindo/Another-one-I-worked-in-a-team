@@ -6,6 +6,15 @@ import org.junit.Test;
 
 public class TestHuman {
 
+  /**
+   * @author lh9509
+   */
+  @Test
+  public void testMaxSpeedHuman() {
+	  Human entity = new Human("Louis", 10, 8);
+	  assertEquals(3, entity.getCurrentSpeed());
+  }
+  
   @Test
   public void testInitialization() {
     Human entity = new Human("Frank", 10, 8);
