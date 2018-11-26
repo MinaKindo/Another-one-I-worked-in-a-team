@@ -14,6 +14,9 @@ public abstract class LifeForm {
   private int attackStrength;
   protected Weapon weapon;
 
+  protected String currentDirection;
+  protected int maxSpeed;
+
   protected int row = -1;
   protected int col = -1;
 
@@ -27,6 +30,9 @@ public abstract class LifeForm {
     myName = name;
     currentLifePoints = points;
     attackStrength = 1;
+    currentDirection = "North";
+    maxSpeed = 0;
+
   }
 
   /**
@@ -40,6 +46,24 @@ public abstract class LifeForm {
     myName = name;
     currentLifePoints = points;
     attackStrength = s;
+    currentDirection = "North";
+    maxSpeed = 0;
+  }
+
+  public int getCurrentSpeed() {
+    return maxSpeed;
+  }
+
+  public void setCurrentSpeed(int speed) {
+    maxSpeed = speed;
+  }
+
+  public String getCurrentDirection() {
+    return currentDirection;
+  }
+
+  public void setCurrentDirection(String direction) {
+    currentDirection = direction;
   }
 
   /**

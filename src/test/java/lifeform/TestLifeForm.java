@@ -19,6 +19,25 @@ import weapon.Weapon;
 public class TestLifeForm {
 
   /**
+   * @author lh9509
+   */
+  @Test
+  public void testDefaultDirection() {
+    LifeForm lf = new MockLifeForm("Fred", 5);
+    assertEquals("North", lf.getCurrentDirection());
+  }
+  
+  /**
+   * @author lh9509
+   */
+  @Test
+  public void testChangeDirection() {
+    LifeForm lf = new MockLifeForm("Fred", 5);
+    lf.setCurrentDirection("East");
+    assertEquals("East", lf.getCurrentDirection());
+  }
+  
+  /**
    * @author ad5146
    */
   @Test

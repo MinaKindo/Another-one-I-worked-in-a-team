@@ -25,6 +25,69 @@ public class Environment {
     }
   }
 
+  /**
+   * @author lh9509 Moves LifeForm -- takes into account max bounds & other
+   *         LifeForms
+   * 
+   * @param entity
+   */
+  public void move(LifeForm entity) {
+
+    int speed = entity.getCurrentSpeed();
+    String direction = entity.getCurrentDirection();
+    int previousRow = entity.getRow();
+    int previousCol = entity.getCol();
+
+    if (direction.equals("North")) {
+      while (entity.getRow() - speed < 0) {
+        speed -= 1;
+      }
+      while (cells[entity.getRow() - speed][entity.getCol()].getLifeForm() != null) {
+        speed -= 1;
+      }
+      if (speed >= 1) {
+        environment.removeLifeForm(previousRow, previousCol);
+        environment.addLifeForm(entity, entity.getRow() - speed, entity.getCol());
+      }
+    } else if (direction.equals("West")) {
+      while (entity.getCol() - speed < 0) {
+        speed -= 1;
+      }
+      while (cells[entity.getRow()][entity.getCol() - speed].getLifeForm() != null) {
+        speed -= 1;
+      }
+
+      if (speed >= 1) {
+        environment.removeLifeForm(previousRow, previousCol);
+        environment.addLifeForm(entity, entity.getRow(), entity.getCol() - speed);
+      }
+    } else if (direction.equals("South")) {
+      while (entity.getRow() + speed >= environment.getNumRows()) {
+        speed -= 1;
+      }
+      while (cells[entity.getRow() + speed][entity.getCol()].getLifeForm() != null) {
+        speed -= 1;
+      }
+
+      if (speed >= 1) {
+        environment.removeLifeForm(previousRow, previousCol);
+        environment.addLifeForm(entity, entity.getRow() + speed, entity.getCol());
+      }
+    } else if (direction.equals("East")) {
+      while (entity.getCol() + speed >= environment.getNumCols()) {
+        speed -= 1;
+      }
+      while (cells[entity.getRow()][entity.getCol() + speed].getLifeForm() != null) {
+        speed -= 1;
+      }
+
+      if (speed >= 1) {
+        environment.removeLifeForm(previousRow, previousCol);
+        environment.addLifeForm(entity, entity.getRow(), entity.getCol() + speed);
+      }
+    }
+  }
+
   public boolean addLifeForm(LifeForm entity, int row, int col) {
     entity.setLocation(row, col);
     return cells[row][col].addLifeForm(entity);

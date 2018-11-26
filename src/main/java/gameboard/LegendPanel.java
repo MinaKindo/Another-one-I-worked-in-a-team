@@ -1,12 +1,20 @@
 package gameboard;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
+import java.awt.GridLayout;
+import java.awt.Image;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class LegendPanel extends JPanel {
+  
+  /**
+   * Creates a legend panel
+   */
   public LegendPanel() {
-    setLayout(new GridLayout(9,1));
+    setLayout(new GridLayout(9, 1));
     // Add a border around the panel.
     setBorder(BorderFactory.createTitledBorder("Legend"));
     
@@ -48,7 +56,7 @@ public class LegendPanel extends JPanel {
     imageIcon = new ImageIcon(newimg);  // transform it back
     label.setIcon(imageIcon);
 
-	return label;	  
+	return label;
   }
   
   

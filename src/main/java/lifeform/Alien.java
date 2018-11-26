@@ -23,6 +23,8 @@ public class Alien extends LifeForm implements TimerObserver {
     super(name, points, 10);
     maxLifePoints = points;
     recoverRate = 0;
+    maxSpeed = 2;
+
   }
 
   /**
@@ -39,6 +41,8 @@ public class Alien extends LifeForm implements TimerObserver {
     this(name, points);
     recoveryBehavior = rb;
     recoverRate = 0;
+    maxSpeed = 2;
+
   }
 
   /**

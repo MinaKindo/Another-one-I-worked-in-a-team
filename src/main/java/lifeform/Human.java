@@ -18,6 +18,7 @@ public class Human extends LifeForm {
     super(name, lifePoints, 5);
     this.armorPoints = armorPoints;
     checkArmorPoints();
+    maxSpeed = 3;
   }
 
   public void setArmorPoints(int armorPoints) {

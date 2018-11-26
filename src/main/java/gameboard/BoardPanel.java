@@ -14,31 +14,30 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-
 import environment.Environment;
 import lifeform.Human;
 import lifeform.LifeForm;
+import environment.Cell;
 
 public class BoardPanel extends JPanel implements FocusListener {
   private BoardCellPanel squares[][] = new BoardCellPanel[4][4];
   
   private int x; //x location on gameboard
   private int y; //y location on gameboard
-	
+
+  /**
+   * Creates a board panel
+   */
   public BoardPanel() {
-    setLayout(new GridLayout(4,4));
-	  for (int r = 0; r < squares.length; r++) {
-        for (int c = 0; c < squares[0].length; c++) {
+
+    setLayout(new GridLayout(4, 4));
+    for (int r = 0; r < squares.length; r++) {
+      for (int c = 0; c < squares[0].length; c++) {
         squares[r][c] = new BoardCellPanel();
         squares[r][c].setBackground(Color.white);
         squares[r][c].setBorder(BorderFactory.createLineBorder(Color.black));
-        squares[r][c].setPreferredSize(new Dimension (100,100));
-        
         add(squares[r][c]);
-        
-        
-        
-        
+        squares[r][c].setPreferredSize(new Dimension(100, 100));
       }
         /*LifeForm mina = new Human("mina", 0, 0);
         squares[2][1].add(displayHuman(mina, 2, 1));*/
@@ -96,17 +95,6 @@ public class BoardPanel extends JPanel implements FocusListener {
     
   }
 
-	@Override
-	public void focusGained(FocusEvent e) {
-		setBackground(Color.yellow);
-		
-	}
-
-	@Override
-	public void focusLost(FocusEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
 }
+
+

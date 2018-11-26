@@ -1,5 +1,8 @@
 package command;
 
+/**
+ * @author ad5146
+ */
 public class ReloadCommand implements Command {
 
   @Override

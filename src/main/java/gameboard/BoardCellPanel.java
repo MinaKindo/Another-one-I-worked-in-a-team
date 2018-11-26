@@ -85,7 +85,7 @@ public class BoardCellPanel extends JPanel {
 	
 	public int selectedX() {
     return x;
-  }
+	}
 
   public int selectedY() {
     return y;
