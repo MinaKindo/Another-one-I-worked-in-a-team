@@ -22,7 +22,7 @@ public class TestLifeForm {
    * @author lh9509
    */
   @Test
-  public void testdefaultDirection() {
+  public void testDefaultDirection() {
     LifeForm lf = new MockLifeForm("Fred", 5);
     assertEquals("North", lf.getCurrentDirection());
   }

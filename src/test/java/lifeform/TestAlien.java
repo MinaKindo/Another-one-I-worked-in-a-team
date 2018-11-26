@@ -17,7 +17,7 @@ public class TestAlien {
    * @author lh9509
    */
   @Test
-  public void testMaxSpeedHuman() {
+  public void testMaxSpeedAlien() {
     Alien entity = null;
     try {
       entity = new Alien("Jeb", 10);
