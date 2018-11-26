@@ -1,5 +1,8 @@
 package command;
 
+/**
+ * @author ad5146
+ */
 public class SouthCommand implements Command {
 
   @Override

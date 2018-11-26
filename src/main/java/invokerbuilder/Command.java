@@ -1,11 +1,12 @@
-/**
- * @author sb0476
- */
+
 package invokerbuilder;
 
 import lifeform.LifeForm;
 import weapon.Weapon;
 
+/**
+ * @author sb0476
+ */
 public class Command {
 
   public void reloadCommand(LifeForm lifeform) {
@@ -22,15 +23,18 @@ public class Command {
   }
 
   public void attackCommand(LifeForm lifeform, int distance) {
-//    LifeForm.attack(lifeform, distance);
+    // LifeForm.attack(lifeform, distance);
     // change attack() to static?
   }
 
   public void dropCommand(LifeForm lifeform) {
-//    LifeForm.dropWeapon();
+    // LifeForm.dropWeapon();
     // change dropWeapon() to static?
   }
 
+  /**
+   * acquires weapon
+   */
   public void acuireCommand(LifeForm lifeform, Weapon newWeapon) {
     if (lifeform.hasWeapon() == true) {
       lifeform.dropWeapon();

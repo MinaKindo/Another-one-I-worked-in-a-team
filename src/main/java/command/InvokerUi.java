@@ -12,9 +12,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import gameboard.GameGUI;
+import gameboard.GameGui;
 
-public class InvokerUI extends JFrame implements ActionListener {
+/**
+ * @author ad5146
+ */
+public class InvokerUi extends JFrame implements ActionListener {
 
   private JButton reloadButton;
   private JButton northButton;
@@ -26,7 +29,7 @@ public class InvokerUI extends JFrame implements ActionListener {
   private JButton dropButton;
   private JButton acquireButton;
 
-  private GameGUI gameGUI;
+  private GameGui gameGui;
 
   private Command reloadCommand = new ReloadCommand();
   private Command northCommand = new NorthCommand();
@@ -38,8 +41,11 @@ public class InvokerUI extends JFrame implements ActionListener {
   private Command dropCommand = new DropCommand();
   private Command acquireCommand = new AcquireCommand();
 
-  public InvokerUI(GameGUI gameGUI) {
-    this.gameGUI = gameGUI;
+  /**
+   * Creates an invoker ui
+   */
+  public InvokerUi(GameGui gameGui) {
+    this.gameGui = gameGui;
     this.setTitle("commands");
     this.setResizable(false);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -115,23 +121,23 @@ public class InvokerUI extends JFrame implements ActionListener {
   @Override
   public void actionPerformed(ActionEvent e) {
     if (e.getSource() == reloadButton) {
-      reloadCommand.execute(gameGUI.selectedX(), gameGUI.selectedY());
+      reloadCommand.execute(gameGui.selectedX(), gameGui.selectedY());
     } else if (e.getSource() == northButton) {
-      northCommand.execute(gameGUI.selectedX(), gameGUI.selectedY());
+      northCommand.execute(gameGui.selectedX(), gameGui.selectedY());
     } else if (e.getSource() == westButton) {
-      westCommand.execute(gameGUI.selectedX(), gameGUI.selectedY());
+      westCommand.execute(gameGui.selectedX(), gameGui.selectedY());
     } else if (e.getSource() == eastButton) {
-      eastCommand.execute(gameGUI.selectedX(), gameGUI.selectedY());
+      eastCommand.execute(gameGui.selectedX(), gameGui.selectedY());
     } else if (e.getSource() == southButton) {
-      southCommand.execute(gameGUI.selectedX(), gameGUI.selectedY());
+      southCommand.execute(gameGui.selectedX(), gameGui.selectedY());
     } else if (e.getSource() == moveButton) {
-      moveCommand.execute(gameGUI.selectedX(), gameGUI.selectedY());
+      moveCommand.execute(gameGui.selectedX(), gameGui.selectedY());
     } else if (e.getSource() == attackButton) {
-      attackCommand.execute(gameGUI.selectedX(), gameGUI.selectedY());
+      attackCommand.execute(gameGui.selectedX(), gameGui.selectedY());
     } else if (e.getSource() == dropButton) {
-      dropCommand.execute(gameGUI.selectedX(), gameGUI.selectedY());
+      dropCommand.execute(gameGui.selectedX(), gameGui.selectedY());
     } else if (e.getSource() == acquireButton) {
-      acquireCommand.execute(gameGUI.selectedX(), gameGUI.selectedY());
+      acquireCommand.execute(gameGui.selectedX(), gameGui.selectedY());
     }
   }
 }

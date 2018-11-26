@@ -16,7 +16,7 @@ public abstract class LifeForm {
 
   protected String currentDirection;
   protected int maxSpeed;
-  
+
   protected int row = -1;
   protected int col = -1;
 
@@ -50,23 +50,22 @@ public abstract class LifeForm {
     maxSpeed = 0;
   }
 
-
   public int getCurrentSpeed() {
-	  return maxSpeed;
+    return maxSpeed;
   }
-  
+
   public void setCurrentSpeed(int speed) {
-	  maxSpeed = speed;
+    maxSpeed = speed;
   }
-  
+
   public String getCurrentDirection() {
-	  return currentDirection;
+    return currentDirection;
   }
-  
+
   public void setCurrentDirection(String direction) {
-	  currentDirection = direction;
+    currentDirection = direction;
   }
-  
+
   /**
    * @return the name of the lifeform
    */

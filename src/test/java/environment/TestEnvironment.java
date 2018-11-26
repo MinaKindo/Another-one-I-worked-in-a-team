@@ -27,79 +27,78 @@ public class TestEnvironment {
     environment.clearBoard();
   }
 
-  
   /**
    * @author lh9509
    */
   @Test
   public void testMovementNorth() {
-	
-	//move north
+
+    // move north
     LifeForm entity1 = new MockLifeForm("Bob", 20);
     LifeForm entity2 = new MockLifeForm("Bill", 30);
-    
+
     environment.addLifeForm(entity1, 2, 3);
     environment.addLifeForm(entity2, 1, 3);
-    
+
     entity1.setCurrentSpeed(1);
     environment.move(entity1);
-    
-    assertEquals(entity1, environment.getLifeForm(2,3));
+
+    assertEquals(entity1, environment.getLifeForm(2, 3));
   }
- 
+
   /**
    * @author lh9509
    */
   @Test
   public void testMovementWest() {
-	LifeForm entity1 = new MockLifeForm("Bob", 20);
-	LifeForm entity2 = new MockLifeForm("Bill", 30);
-	    
-	environment.addLifeForm(entity1, 2, 3);
-	environment.addLifeForm(entity2, 2, 1);
-	    
-	entity1.setCurrentSpeed(2);
-	entity1.setCurrentDirection("West");
+    LifeForm entity1 = new MockLifeForm("Bob", 20);
+    LifeForm entity2 = new MockLifeForm("Bill", 30);
+
+    environment.addLifeForm(entity1, 2, 3);
+    environment.addLifeForm(entity2, 2, 1);
+
+    entity1.setCurrentSpeed(2);
+    entity1.setCurrentDirection("West");
     environment.move(entity1);
-	    
-	assertEquals(entity1,environment.getLifeForm(2, 2));
+
+    assertEquals(entity1, environment.getLifeForm(2, 2));
   }
-  
+
   /**
    * @author lh9509
    */
   @Test
   public void testMovementSouth() {
-	LifeForm entity1 = new MockLifeForm("Bob", 20);
-	LifeForm entity2 = new MockLifeForm("Bill", 30);
-	    
-	environment.addLifeForm(entity1, 0, 3);
-	environment.addLifeForm(entity2, 2, 3);
-	    
-	entity1.setCurrentSpeed(2);
-	entity1.setCurrentDirection("South");
-	environment.move(entity1);
-	   
-	assertEquals(entity1, environment.getLifeForm(1,3));
+    LifeForm entity1 = new MockLifeForm("Bob", 20);
+    LifeForm entity2 = new MockLifeForm("Bill", 30);
+
+    environment.addLifeForm(entity1, 0, 3);
+    environment.addLifeForm(entity2, 2, 3);
+
+    entity1.setCurrentSpeed(2);
+    entity1.setCurrentDirection("South");
+    environment.move(entity1);
+
+    assertEquals(entity1, environment.getLifeForm(1, 3));
   }
-  
+
   /**
    * @author lh9509
    */
   @Test
   public void testMovementEast() {
-	  
-	LifeForm entity1 = new MockLifeForm("Bob", 20);
-	LifeForm entity2 = new MockLifeForm("Bill", 30);
-	    
-	environment.addLifeForm(entity1, 0, 0);
-	environment.addLifeForm(entity2, 0, 3);
-	    
-	entity1.setCurrentSpeed(4);
-	entity1.setCurrentDirection("East");
-	environment.move(entity1);
-	   
-	assertEquals(entity1, environment.getLifeForm(0,2));
+
+    LifeForm entity1 = new MockLifeForm("Bob", 20);
+    LifeForm entity2 = new MockLifeForm("Bill", 30);
+
+    environment.addLifeForm(entity1, 0, 0);
+    environment.addLifeForm(entity2, 0, 3);
+
+    entity1.setCurrentSpeed(4);
+    entity1.setCurrentDirection("East");
+    environment.move(entity1);
+
+    assertEquals(entity1, environment.getLifeForm(0, 2));
   }
 
   /**
@@ -107,36 +106,37 @@ public class TestEnvironment {
    */
   @Test
   public void testMovementBounds() {
-	  
+
     /* Tests Vertical Movement */
     LifeForm entity1 = new MockLifeForm("Bob", 20);
     environment.addLifeForm(entity1, 2, 2);
     entity1.setCurrentSpeed(10);
-  
+
     /* Tests North Bounds */
     environment.move(entity1);
     assertEquals(entity1, environment.getLifeForm(0, 2));
- 
+
     /* Tests South Bounds */
     entity1.setCurrentDirection("South");
     environment.move(entity1);
-    assertEquals(entity1, environment.getLifeForm(3,2));
-  
+    assertEquals(entity1, environment.getLifeForm(3, 2));
+
     /* Tests horizontal movement */
-    LifeForm entity2 = new MockLifeForm("Bill",30);
+    LifeForm entity2 = new MockLifeForm("Bill", 30);
     environment.addLifeForm(entity2, 0, 0);
-  
+
     /* Tests East Bounds */
     entity2.setCurrentDirection("East");
     entity2.setCurrentSpeed(100);
     environment.move(entity2);
-    assertEquals(entity2,environment.getLifeForm(0, 3));
-  
+    assertEquals(entity2, environment.getLifeForm(0, 3));
+
     /* Tests West Bounds */
     entity2.setCurrentDirection("West");
     environment.move(entity2);
-    assertEquals(entity2,environment.getLifeForm(0, 0));
+    assertEquals(entity2, environment.getLifeForm(0, 0));
   }
+
   /**
    * @author lh9509
    */

@@ -11,10 +11,10 @@ public class TestHuman {
    */
   @Test
   public void testMaxSpeedHuman() {
-	  Human entity = new Human("Louis", 10, 8);
-	  assertEquals(3, entity.getCurrentSpeed());
+    Human entity = new Human("Louis", 10, 8);
+    assertEquals(3, entity.getCurrentSpeed());
   }
-  
+
   @Test
   public void testInitialization() {
     Human entity = new Human("Frank", 10, 8);

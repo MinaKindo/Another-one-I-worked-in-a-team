@@ -8,10 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 public class BoardCellPanel extends JPanel {
-  
-	
-	public BoardCellPanel() {
-	  setLayout(new GridLayout(1,1));
-	}
+
+  public BoardCellPanel() {
+    setLayout(new GridLayout(1, 1));
+  }
 
 }
