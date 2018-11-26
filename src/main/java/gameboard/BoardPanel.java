@@ -19,7 +19,7 @@ import lifeform.Human;
 import lifeform.LifeForm;
 import environment.Cell;
 
-public class BoardPanel extends JPanel implements FocusListener {
+public class BoardPanel extends JPanel {
   private BoardCellPanel squares[][] = new BoardCellPanel[4][4];
   
   private int x; //x location on gameboard
