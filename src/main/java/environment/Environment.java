@@ -46,7 +46,6 @@ public class Environment {
 	    	 speed -=1;
 	     }
 	     if(speed >= 1) {
-		     System.out.println(speed);
 		     environment.removeLifeForm(previousRow, previousCol);
 		     environment.addLifeForm(entity, entity.getRow() - speed, entity.getCol());
 	     }  
@@ -61,7 +60,6 @@ public class Environment {
 		  }
 		  
 		 if(speed >=1) {
-			 System.out.println(speed);
 			 environment.removeLifeForm(previousRow,previousCol);
 			 environment.addLifeForm(entity, entity.getRow(), entity.getCol() - speed);
 		 }
@@ -76,7 +74,6 @@ public class Environment {
 	     }
 	     
 	     if (speed >=1) {
-		     System.out.println(speed);
 		     environment.removeLifeForm(previousRow, previousCol);
 		     environment.addLifeForm(entity, entity.getRow() + speed, entity.getCol());  
 	     }

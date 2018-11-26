@@ -44,7 +44,6 @@ public class TestEnvironment {
     entity1.setCurrentSpeed(1);
     environment.move(entity1);
     
-    System.out.println(entity1.getRow() + " " + entity1.getCol());
     assertEquals(entity1, environment.getLifeForm(2,3));
   }
  
