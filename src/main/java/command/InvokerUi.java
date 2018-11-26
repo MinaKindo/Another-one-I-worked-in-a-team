@@ -51,7 +51,8 @@ public class InvokerUi extends JFrame implements ActionListener {
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     this.setLayout(new BorderLayout());
-
+    
+    // sets font
     Font font = new Font("SansSerif", Font.PLAIN, 20);
     JLabel text = new JLabel("Choose an action");
     text.setFont(font);
