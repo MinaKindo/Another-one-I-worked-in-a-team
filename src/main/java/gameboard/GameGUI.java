@@ -1,9 +1,16 @@
 package gameboard;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+import environment.Environment;
+import lifeform.LifeForm;
 
 public class GameGUI extends JFrame {
 
@@ -12,7 +19,9 @@ public class GameGUI extends JFrame {
 	private PlayerInfoPanel playerInfo; //A panel for the player Info
 	private BoardPanel board; //A panel for the board
     protected JFrame frame;
-  
+    private int x; //x location on gameboard
+    private int y; //y location on gameboard
+    private Environment environment = Environment.getEnvironment(4, 4); 
 
 	/**
 	 * Launch the application.
@@ -37,6 +46,7 @@ public class GameGUI extends JFrame {
     add(board, BorderLayout.WEST);
     add(legend, BorderLayout.EAST);
     add(playerInfo, BorderLayout.SOUTH);
+    addMouseListener(new MyMouseListener());
     
     // Pack the contents of the window and display it.
     pack();
@@ -54,11 +64,53 @@ public class GameGUI extends JFrame {
 	}
 	
 	public int selectedX() {
-    return 0;
+    return x;
   }
 
   public int selectedY() {
-    return 0;
+    return y;
+  }
+  
+  /**
+	Private inner class that handles mouse events.
+	*/
+	private class MyMouseListener implements MouseListener {
+
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			x = e.getX();
+			y = e.getY();			
+		}
+
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			setBackground(Color.white);
+			
+		}
+	}
+	
+	public JLabel displayHuman(LifeForm entity, int row, int col) {
+	  
+    return board.displayHuman(entity, row, col);
+    
   }
 
 }
