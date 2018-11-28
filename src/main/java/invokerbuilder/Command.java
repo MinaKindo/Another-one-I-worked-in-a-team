@@ -25,8 +25,7 @@ public class Command {
   }
 
   public void attackCommand(LifeForm lifeform, int distance) {
-    LifeForm.attack(lifeform, distance);
-    // change attack() to static?
+//
   }
 
   public void dropCommand(LifeForm lifeform) {
@@ -38,11 +37,7 @@ public class Command {
    * acquires weapon
    */
   public void acquireCommand(LifeForm lifeform, Weapon newWeapon) {
-    if (lifeform.hasWeapon() == true) {
-      lifeform.dropWeapon();
-    }
-
-    lifeform.pickUpWeapon(newWeapon);
+//
   }
 
 }
