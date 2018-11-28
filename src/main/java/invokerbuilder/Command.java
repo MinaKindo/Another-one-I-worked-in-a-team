@@ -9,6 +9,8 @@ import weapon.Weapon;
  */
 public class Command {
 
+  /**
+  
   public void reloadCommand(LifeForm lifeform) {
     LifeForm.reload();
     // lifeform.reload();
@@ -32,6 +34,8 @@ public class Command {
     LifeForm.dropWeapon();
     // change dropWeapon() to static?
   }
+  
+  */
 
   /**
    * acquires weapon

@@ -14,15 +14,16 @@ public class AttackCommand implements Command {
     Environment e = Environment.getEnvironment(4, 4);
     LifeForm lifeform = e.getLifeForm(x, y);
     LifeForm Opponent = null;
-    
-    for(int z = )
-    
+        
     
     if(lifeform.getCurrentDirection() == "West" || lifeform.getCurrentDirection() == "East") {
-      if
+      //for(int z = x; z )
+
     }
     
-    LifeForm.attack(lifeform, distance);
+    
+    
+    //LifeForm.attack(lifeform, distance);
     // change attack() to static?
 
   }

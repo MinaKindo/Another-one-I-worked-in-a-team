@@ -5,6 +5,7 @@ import org.junit.Test;
 import environment.Environment;
 import lifeform.LifeForm;
 import lifeform.MockLifeForm;
+import weapon.Pistol;
 
 /**
  * @author sb0476
@@ -79,7 +80,11 @@ public class TestCommand {
   public void testAcquireWithOneWeaponAvailable() {
     Environment enviro = Environment.getEnvironment(4, 4);
     LifeForm lf = new MockLifeForm ("Smith", 25);
+    Pistol ptl = new Pistol();
+    
     enviro.addLifeForm(lf, 1, 1);
+    enviro.addWeapon(ptl, 1, 1);
+    //AcquireCommand();
     
   }
   
@@ -88,9 +93,8 @@ public class TestCommand {
     Environment enviro = Environment.getEnvironment(4, 4);
     LifeForm lf = new MockLifeForm ("Smith", 25);
     
-    
     enviro.addLifeForm(lf, 1, 1);
-    enviro.addWeapon(ptl, 4, 4);
+    
     
   }
   
