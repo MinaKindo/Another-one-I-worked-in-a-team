@@ -1,108 +1,135 @@
 package environment;
-
-import lifeform.LifeForm;
 import weapon.Weapon;
+import lifeform.LifeForm;
+/** 
+ * A Cell that can hold a LifeForm. 
+ * @author Dr. Dudley Girard -- first author
+ * @author Dr. Alice Armstrong -- revisions
+ */ 
+public class Cell 
+{ 
+  private LifeForm cellLife;  //the LifeForm that exists in this cell
+  private int weaponsCount; //how many weapons (not held by LifeForms) are in this Cell
+  private Weapon weapon1;   //a cell can hold up to 2 Weapons
+  private Weapon weapon2;   //Any Weapons held by LifeForms are not counted
 
-/**
- * A cell that can hold a LifeForm.
- *
- */
-public class Cell {
+ /** 
+  * @return the LifeForm in this Cell. 
+  */ 
+    public LifeForm getLifeForm() 
+    { 
+        return cellLife; 
+    }  
+    
+/** 
+ * Tries to add the LifeForm to the Cell.  Will not add if a 
+ * LifeForm is already present.
+ * @return true if the LifeForm was added the Cell, false otherwise. 
+ */ 
+    public boolean addLifeForm(LifeForm entity) 
+    { 
+    	//if there is not LifeForm in this cell, put entity here
+    	if (cellLife == null)
+    	{
+    		cellLife = entity; 
+    		return true; 
+    	}
+    	
+    	//otherwise, the cell is already full. Do not place entity here
+        return false; 
+    }  
 
-  private LifeForm lifeForm;
-  private int weaponsCount;
-  private Weapon weapon1;
-  private Weapon weapon2;
-
-  /**
-   * Tries to add the LifeForm of the Cell. Will not add if a LifeForm is already
-   * present.
-   * 
-   * @param entity
-   *          the lifeform held in the cell
-   * @return true if the LifeForm was added to the Cell, false otherwise.
-   */
-  public boolean addLifeForm(LifeForm entity) {
-    if (lifeForm == null) {
-      lifeForm = entity;
-      return true;
-    } else {
-      return false;
+    /**
+     * Removes any LifeForm from this Cell. 
+     * @author Dr. Alice Armstrong
+     * @return the LifeForm that was removed
+     */
+    public LifeForm removeLifeForm()
+    {
+    	LifeForm temp = cellLife; 
+    	cellLife = null;
+    	return temp; 
     }
-  }
 
-  /**
-   * @author dh3187
-   * @param weapon
-   * @return true if weapon was added, false if not
-   */
-  public boolean addWeapon(Weapon weapon) {
-    if (weapon1 == null && weapon2 != weapon) {
-      weapon1 = weapon;
-      weaponsCount++;
-      return true;
-    } else {
-      if (weapon2 == null && weapon1 != weapon) {
-        weapon2 = weapon;
-        weaponsCount++;
-        return true;
-      } else {
-        return false;
-      }
-    }
-  }
-  
-  /**
-   * @return the LifeForm in this Cell.
-   */
-  public LifeForm getLifeForm() {
-    return lifeForm;
-  }
-  
-  /**
-   * @author dh3187
-   * @return weapon1
-   */
-  public Weapon getWeapon1() {
-    return weapon1;
-  }
-  
-  /**
-   * @author dh3187
-   * @return weapon2
-   */
-  public Weapon getWeapon2() {
-    return weapon2;
-  }
-  
-  /**
-   * @author dh3187
-   * @return number of weapons in cell
-   */
-  public int getWeaponsCount() {
-    return weaponsCount;
-  }
+	/**
+	 * @return
+	 */
+	public int getWeaponsCount() {
+		return weaponsCount;
+	}
 
-  public void removeLifeForm() {
-    lifeForm = null;
-  }
+	/**
+	 * @param weapon1
+	 */
+	public boolean addWeapon(Weapon weapon) {
+		//if slot 1 is open, and the cell does not already contain this instance
+		//make it weapon 1
+		if(weapon1 == null && weapon != weapon2)
+		{
+			weapon1 = weapon; 
+			weaponsCount++; 
+			return true; 
+		}
+		
+		//if slot 2 is open, and the cell does not already contain this instance
+		//make it weapon 2
+		else if(weapon2 == null && weapon1 != weapon)
+		{
+			weapon2 = weapon; 
+			weaponsCount++; 
+			return true; 
+		}
+		
+		return false; 
+	}
 
-  /**
-   * @author aa1184
-   * @param pistol
-   * @return theRemovedWeapon
-   */
-  public Weapon removeWeapon(Weapon weapon) {
-    Weapon theRemovedWeapon = weapon;
-    if (weapon1 == weapon) {
-      weapon1 = null;
-      weaponsCount--;
-    } else if (weapon2 == weapon) {
-      weapon2 = null;
-      weaponsCount--;
-    } else {
-      return null;
-    }
-    return theRemovedWeapon;
-  }
+	/**
+	 * @param weapon3
+	 * @return
+	 */
+	public Weapon removeWeapon(Weapon weapon) {
+		
+		//remove nothing from this cell
+		if (weapon == null)
+		{
+			//used in the clearBoard method in the Environment
+			return null; 
+		}
+		//try to find the specific instance
+		else if(weapon == weapon1)
+		{
+			Weapon temp = weapon1; 
+			weaponsCount--; 
+			weapon1 = null; 
+			return temp; 
+		}
+		else if (weapon == weapon2)
+		{
+			Weapon temp = weapon2; 
+			weaponsCount--; 
+			weapon2 = null; 
+			return temp; 
+		}
+		//this instance is not in this Cell
+		else
+		{
+			return null; 
+		}
+		
+	}
+
+	/**
+	 * @return the weapon in the first slot
+	 */
+	public Weapon getWeapon1() {
+		return weapon1;
+	}
+	
+	/**
+	 * @return the weapon in the first slot
+	 */
+	public Weapon getWeapon2() {
+		return weapon2;
+	}
 }
+

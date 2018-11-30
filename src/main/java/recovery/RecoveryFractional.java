@@ -1,29 +1,36 @@
+/**
+ * 
+ */
 package recovery;
 
+/**
+ * @author Dr. Alice Armstrong
+ *
+ */
 public class RecoveryFractional implements RecoveryBehavior {
 
-  private double recoveryFraction;
-  
-  public RecoveryFractional(double rf) {
-    recoveryFraction = rf;
-  }
-  
-  @Override
-  public int calculateRecovery(int currentLife, int maxLife) {
-    double recoverExact = currentLife * recoveryFraction;
-    int recover = (int) (currentLife * recoveryFraction);
-    
-    double remainder = recoverExact - recover;
-    
-    if (remainder > 0) {
-      recover++;
-    }
-    
-    int result = currentLife + recover;
-    
-    if (result > maxLife) {
-      result = maxLife;
-    }
-    return result;
-  }
+	private double recoveryFraction; //how much of the currentLife is recovered
+	
+	public RecoveryFractional(double recoveryFraction)
+	{
+		this.recoveryFraction = recoveryFraction; 
+	}
+	
+	/** 
+	 * @see recovery.RecoveryBehavior#calculateRecovery(int, int)
+	 * recover the fractional amount of currentLife without exceeding maxLife
+	 * fractional amount is always rounded up, for example, 10% of 9 points is 0.9. Amount to recover is 1 life point. 
+	 */
+	public int calculateRecovery(int currentLife, int maxLife) {
+		int recoverAmt = (int) Math.ceil(recoveryFraction*currentLife) + currentLife; 
+		
+		//can't recover to more than maxLife
+		if (recoverAmt > maxLife)
+		{
+			return maxLife; 
+		}
+			
+		return recoverAmt;
+	}
+
 }

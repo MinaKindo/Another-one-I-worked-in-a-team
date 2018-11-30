@@ -1,33 +1,45 @@
+/**
+ * 
+ */
 package weapon;
 
 import exceptions.AttachmentException;
 import exceptions.WeaponException;
 
+/**
+ * @author Dr. Alice Armstrong
+ *
+ */
 public class PowerBooster extends Attachment {
 
-  /**
-   * Power Boosters increase the base Weapon's damage based on how much ammo is
-   * left the more ammo left, the more powerful the boost
-   * 
-   * @param baseWeapon The weapon to decorate
-   * @throws AttachmentException If there are already two attachments
-   */
-  public PowerBooster(Weapon baseWeapon) throws AttachmentException {
-    if (baseWeapon.getNumAttachments() >= 2) {
-      throw attachmentCountException;
-    }
-    base = baseWeapon;
-  }
+	/**
+	 * Power Boosters increase the base Weapon's damage based on how much ammo is left
+	 * the more ammo left, the more powerful the boost
+	 * @param baseWeapon
+	 * @throws AttachmentException
+	 */
+	public PowerBooster(Weapon baseWeapon) throws AttachmentException
+	{
+		this.base = baseWeapon; 
+		
+		if(this.base.getNumAttachments() == 2)
+		{
+			throw new AttachmentException("Only 2 attachment allowed per base Weapon."); 
+		}
+	}
+	
+	public String toString()
+	{
+		return base.toString()+" +PowerBooster"; 
+	}
+	
+	/**
+	 * @see weapon.Attachment#fire(int)
+	 */
+	@Override
+	public int fire(double distance) throws WeaponException {
+		double boosterDamage = base.fire(distance)*(1+((double)base.getCurrentAmmo()+1)/(double)base.getMaxAmmo()); 
+		return (int)boosterDamage;
+	}
 
-  @Override
-  public int fire(int distance) throws WeaponException {
-    double multiplier = 1 + ((base.getCurrentAmmo() + 0.0) / base.getMaxAmmo());
-    int baseFire = base.fire(distance);
-    return (int) (baseFire * multiplier);
-  }
-
-  @Override
-  public String toString() {
-    return base.toString() + " +PowerBooster";
-  }
 }
