@@ -10,11 +10,11 @@ public class AIContext {
   private ActionState deadState;
   private ActionState noWeaponState;
   
-  public AIContext(Environment e, AIContext ai, LifeForm l) {
-    hasWeaponState = new HasWeaponState(e, ai, l);
-    outOfAmmoState = new OutOfAmmoState(e, ai, l);
-    deadState = new DeadState(e, ai, l);
-    noWeaponState = new NoWeaponState(e, ai, l);
+  public AIContext(Environment e, LifeForm l) {
+    hasWeaponState = new HasWeaponState(e, this, l);
+    outOfAmmoState = new OutOfAmmoState(e, this, l);
+    deadState = new DeadState(e, this, l);
+    noWeaponState = new NoWeaponState(e, this, l);
   }
   
   public void executeAction() {

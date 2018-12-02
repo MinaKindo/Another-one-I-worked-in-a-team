@@ -10,8 +10,6 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.Scanner;
 
@@ -21,16 +19,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import recovery.RecoveryFractional;
-import recovery.RecoveryLinear;
-import weapon.Attachment;
-import weapon.ChainGun;
-import weapon.Pistol;
-import weapon.PlasmaCannon;
-import weapon.PowerBooster;
-import weapon.Scope;
-import weapon.Stabilizer;
-import weapon.Weapon;
 import environment.Environment;
 import exceptions.AttachmentException;
 import exceptions.RecoveryRateException;
@@ -40,6 +28,15 @@ import gameplay.Simulator;
 import lifeform.Alien;
 import lifeform.Human;
 import lifeform.LifeForm;
+import recovery.RecoveryFractional;
+import recovery.RecoveryLinear;
+import weapon.ChainGun;
+import weapon.Pistol;
+import weapon.PlasmaCannon;
+import weapon.PowerBooster;
+import weapon.Scope;
+import weapon.Stabilizer;
+import weapon.Weapon;
 
 /**
  * @author Dr. Alice Armstrong
