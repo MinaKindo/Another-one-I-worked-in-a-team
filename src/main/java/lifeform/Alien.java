@@ -6,7 +6,6 @@ import recovery.RecoveryBehavior;
 
 public class Alien extends LifeForm implements TimerObserver {
 
-  private int maxLifePoints;
   private RecoveryBehavior recoveryBehavior;
   private int recoverRate;
 
@@ -21,7 +20,6 @@ public class Alien extends LifeForm implements TimerObserver {
    */
   public Alien(String name, int points) throws RecoveryRateException {
     super(name, points, 10);
-    maxLifePoints = points;
     recoverRate = 0;
     maxSpeed = 2;
 
@@ -75,10 +73,6 @@ public class Alien extends LifeForm implements TimerObserver {
 
   public void setRecoveryRate(int recoveryRate) {
     recoverRate = recoveryRate;
-  }
-
-  public int getMaxLifePoints() {
-    return maxLifePoints;
   }
 
   public int getRecoveryRate() {
