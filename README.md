@@ -63,20 +63,17 @@ after the certain lab is finished.)
 
 Using the following table
 
-| Task | Assignee | Deadline |
-|--|--|--|--|
-|Game UI|Doris & Aminata| 11/16 |
-|Turn & Movement |Logan | 11/14 |
-| Invoker 'Builder'|Anthony | 11/16 |
-|Commands |Seth | 11/15 |
+| Task | Assignee |
+|--|--|
+| Simulator | Anthony |
+| HasWeaponState & DeadState | Mina |
+| NoWeaponState & OutOfAmmoState | Doris |
+| AIContext | Logan |
+| Updates to LifeForm | Seth |
 
 
 # Team Meeting Log
 
 | Meeting # | When | Where | Attendees | Note |
 |---|---|---|---|---|
-| 1 | 12PM-1:50PM, 10/08 | MCT162 | All members | Meet the team |
-| 2 | 12PM-1:50pm, 10/17 | MCT162 | All members | Go over lab 4 |
-| 3 | 12PM-1:50pm, 10/24 | MCT162 | All members | Go over lab 5 |
-| 4 | 1PM-1:30pm, 11/1 | MCT162 | Doris & Aminata | Go over lab 6 |
-| 5 | 3pm-4pm, 11/16 | MCT 164 | Doris & Aminata | Work on GUI |
+| 1 |  |  |  |  |
