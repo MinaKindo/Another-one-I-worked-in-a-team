@@ -2,6 +2,7 @@ package state;
 
 import environment.Environment;
 import lifeform.LifeForm;
+import state.AIContext;
 
 public class NoWeaponState extends ActionState {
 
@@ -11,7 +12,9 @@ public class NoWeaponState extends ActionState {
 
   @Override
   public void executeAction() {
-    // TODO Auto-generated method stub
+    if (state.getState() == deadState) {
+      
+    }
 
   }
 
