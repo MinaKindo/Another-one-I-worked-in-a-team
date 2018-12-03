@@ -24,7 +24,7 @@ public class TestLifeForm {
   @Test
   public void testDefaultDirection() {
     LifeForm lf = new MockLifeForm("Fred", 5);
-    assertEquals("North", lf.getCurrentDirection());
+    assertEquals("North", lf.getDirection());
   }
   
   /**
@@ -33,8 +33,8 @@ public class TestLifeForm {
   @Test
   public void testChangeDirection() {
     LifeForm lf = new MockLifeForm("Fred", 5);
-    lf.setCurrentDirection("East");
-    assertEquals("East", lf.getCurrentDirection());
+    lf.setDirection("East");
+    assertEquals("East", lf.getDirection());
   }
   
   /**

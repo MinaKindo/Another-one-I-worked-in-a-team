@@ -18,12 +18,12 @@ public class MockWeapon extends GenericWeapon {
     rateOfFire = 3;
     shotsLeft = rateOfFire;
   }
-  
+
   @Override
-  public int fire(int distance) throws WeaponException {
+  public int fire(double distance) throws WeaponException {
 
     if (distance < 0) {
-      throw this.distanceException;
+      throw new WeaponException("Distance to target must be at least 0.");
     }
 
     if (currentAmmo == 0) {

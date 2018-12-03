@@ -1,6 +1,7 @@
 package environment;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -40,7 +41,7 @@ public class TestEnvironment {
     environment.addLifeForm(entity1, 2, 3);
     environment.addLifeForm(entity2, 1, 3);
 
-    entity1.setCurrentSpeed(1);
+    entity1.setMaxSpeed(1);
     environment.move(entity1);
 
     assertEquals(entity1, environment.getLifeForm(2, 3));
@@ -57,8 +58,8 @@ public class TestEnvironment {
     environment.addLifeForm(entity1, 2, 3);
     environment.addLifeForm(entity2, 2, 1);
 
-    entity1.setCurrentSpeed(2);
-    entity1.setCurrentDirection("West");
+    entity1.setMaxSpeed(2);
+    entity1.setDirection("West");
     environment.move(entity1);
 
     assertEquals(entity1, environment.getLifeForm(2, 2));
@@ -75,8 +76,8 @@ public class TestEnvironment {
     environment.addLifeForm(entity1, 0, 3);
     environment.addLifeForm(entity2, 2, 3);
 
-    entity1.setCurrentSpeed(2);
-    entity1.setCurrentDirection("South");
+    entity1.setMaxSpeed(2);
+    entity1.setDirection("South");
     environment.move(entity1);
 
     assertEquals(entity1, environment.getLifeForm(1, 3));
@@ -94,8 +95,8 @@ public class TestEnvironment {
     environment.addLifeForm(entity1, 0, 0);
     environment.addLifeForm(entity2, 0, 3);
 
-    entity1.setCurrentSpeed(4);
-    entity1.setCurrentDirection("East");
+    entity1.setMaxSpeed(4);
+    entity1.setDirection("East");
     environment.move(entity1);
 
     assertEquals(entity1, environment.getLifeForm(0, 2));
@@ -110,14 +111,14 @@ public class TestEnvironment {
     /* Tests Vertical Movement */
     LifeForm entity1 = new MockLifeForm("Bob", 20);
     environment.addLifeForm(entity1, 2, 2);
-    entity1.setCurrentSpeed(10);
+    entity1.setMaxSpeed(10);
 
     /* Tests North Bounds */
     environment.move(entity1);
     assertEquals(entity1, environment.getLifeForm(0, 2));
 
     /* Tests South Bounds */
-    entity1.setCurrentDirection("South");
+    entity1.setDirection("South");
     environment.move(entity1);
     assertEquals(entity1, environment.getLifeForm(3, 2));
 
@@ -126,13 +127,13 @@ public class TestEnvironment {
     environment.addLifeForm(entity2, 0, 0);
 
     /* Tests East Bounds */
-    entity2.setCurrentDirection("East");
-    entity2.setCurrentSpeed(100);
+    entity2.setDirection("East");
+    entity2.setMaxSpeed(100);
     environment.move(entity2);
     assertEquals(entity2, environment.getLifeForm(0, 3));
 
     /* Tests West Bounds */
-    entity2.setCurrentDirection("West");
+    entity2.setDirection("West");
     environment.move(entity2);
     assertEquals(entity2, environment.getLifeForm(0, 0));
   }
@@ -244,12 +245,7 @@ public class TestEnvironment {
   public void testBoundaries() {
     // Environment environment = new Environment(3, 2);
     LifeForm entity = new MockLifeForm("Ted", 15);
-    try {
-      environment.addLifeForm(entity, 5, 0);
-      fail();
-    } catch (Exception ex) {
-      ex = null;
-    }
+    assertFalse(environment.addLifeForm(entity, 5, 0));
   }
 
   @Test

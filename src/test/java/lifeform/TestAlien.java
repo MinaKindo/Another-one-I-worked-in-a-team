@@ -24,7 +24,7 @@ public class TestAlien {
     } catch (RecoveryRateException e) {
       fail();
     }
-    assertEquals(2, entity.getCurrentSpeed());
+    assertEquals(2, entity.getMaxSpeed());
   }
 
   @Test

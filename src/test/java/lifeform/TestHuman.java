@@ -12,7 +12,7 @@ public class TestHuman {
   @Test
   public void testMaxSpeedHuman() {
     Human entity = new Human("Louis", 10, 8);
-    assertEquals(3, entity.getCurrentSpeed());
+    assertEquals(3, entity.getMaxSpeed());
   }
 
   @Test
