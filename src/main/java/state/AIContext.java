@@ -29,4 +29,9 @@ public class AIContext {
   public void executeAction() {
     // TODO
   }
+
+  public void search() {
+    // TODO Auto-generated method stub
+    
+  }
 }
