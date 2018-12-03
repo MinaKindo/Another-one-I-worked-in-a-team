@@ -15,7 +15,7 @@ public class Pistol extends GenericWeapon {
 	public Pistol()
 	{
 		baseDamage = 10; 
-		maxRange = 25; 
+		maxRange = 50; 
 		rateOfFire = 2; 
 		maxAmmo = 10; 
 		currentAmmo = maxAmmo; 
@@ -41,7 +41,7 @@ public class Pistol extends GenericWeapon {
 		if (distance <= maxRange && currentAmmo > 0 && shotsLeft >0)
 		{
 			//calculate the damage
-			damage = baseDamage*((maxRange - (int)distance +5.0)/maxRange);
+			damage = baseDamage*((maxRange - (int)distance +10.0)/maxRange);
 		}
 		 
 		
