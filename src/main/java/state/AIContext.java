@@ -31,7 +31,7 @@ public class AIContext {
   }
 
   public void search() {
-    // TODO Auto-generated method stub
+    environment.getRandomCell();
     
   }
 }
