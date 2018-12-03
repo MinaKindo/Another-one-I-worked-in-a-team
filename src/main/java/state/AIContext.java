@@ -9,29 +9,38 @@ public class AIContext {
   private ActionState outOfAmmoState;
   private ActionState deadState;
   private ActionState noWeaponState;
-  public ActionState state;
+  
+  private ActionState currentState;
   
   public AIContext(Environment e, LifeForm l) {
     hasWeaponState = new HasWeaponState(e, this, l);
     outOfAmmoState = new OutOfAmmoState(e, this, l);
     deadState = new DeadState(e, this, l);
     noWeaponState = new NoWeaponState(e, this, l);
-  }
-  
-  public ActionState getState() {
-    return state;
-  }
-  
-  public void setState(ActionState s) {
-    state = s;
+	currentState = noWeaponState;
   }
   
   public void executeAction() {
-    // TODO
+	  currentState.executeAction();
   }
-
-  public void search() {
-    environment.getRandomCell();
-    
+  
+  public void setCurrentState(ActionState state) {
+	  currentState = state;
+  }
+  
+  public ActionState getHasWeaponState() {
+	  return hasWeaponState;
+  }
+  
+  public ActionState getHasNoWeaponsState() {
+	  return noWeaponState;
+  }
+  
+  public ActionState getOutOfAmmoState() {
+	  return outOfAmmoState;
+  }
+  
+  public ActionState getdeadState() {
+	  return deadState;
   }
 }
