@@ -1,11 +1,18 @@
 plugins {
   id 'java'
   id 'eclipse'
-  id 'application'
+  id 'checkstyle'
+}
+
+checkstyle {
+  toolVersion '8.11'
+}
+
+dependencies {
+  testCompile 'junit:junit:4+'
+  testRuntime 'junit:junit:4+'
 }
 
 repositories {
-  jcenter()
+    jcenter()
 }
-
-mainClassName = "gui.GUI"
