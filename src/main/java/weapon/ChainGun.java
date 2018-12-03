@@ -14,7 +14,7 @@ public class ChainGun extends GenericWeapon {
 	public ChainGun()
 	{
 		baseDamage = 15; 
-		maxRange = 30; 
+		maxRange = 60; 
 		rateOfFire = 4; 
 		maxAmmo = 40; 
 		currentAmmo = 40; 
