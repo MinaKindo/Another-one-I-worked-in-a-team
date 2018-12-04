@@ -82,3 +82,5 @@ Using the following table
 | 4 | 1PM-1:30pm, 11/1 | MCT162 | Doris & Aminata | Go over lab 6 |
 | 5 | 3pm-4pm, 11/16 | MCT 164 | Doris & Aminata | Work on GUI |
 | 6 | 12PM-1:50pm, 11/28 | MCT162 | All members | Go over lab 7 |
+| 7 | 12PM-1:50pm, 12/3 | MCT162 | All members | Reviewed lab 7 |
+| 7 | 3:30PM-6:30pm, 12/4 | MCT162 | Doris, Aminata, Logan, & Anthony | Completed lab 7 |
