@@ -14,7 +14,7 @@ import recovery.RecoveryBehavior;
 import recovery.RecoveryFractional;
 import recovery.RecoveryLinear;
 import recovery.RecoveryNone;
-import state.AIContext;
+import state.TestAIContext;
 import weapon.ChainGun;
 import weapon.Pistol;
 import weapon.PlasmaCannon;
@@ -27,7 +27,7 @@ public class Simulator implements TimerObserver {
 
   private final Environment e;
 
-  private List<AIContext> AIs = new ArrayList<>();
+  private List<TestAIContext> AIs = new ArrayList<>();
 
   public Simulator(Environment e, Timer timer, int numHumans, int numAliens)
       throws RecoveryRateException {
@@ -43,7 +43,7 @@ public class Simulator implements TimerObserver {
 
       Point loc = getLifeFormSpawnableCell();
       e.addLifeForm(human, loc.y, loc.x);
-      AIs.add(new AIContext(e, human));
+      AIs.add(new TestAIContext(e, human));
       e.updateCell(loc.y, loc.x);
     }
 
@@ -70,7 +70,7 @@ public class Simulator implements TimerObserver {
 
       Point loc = getLifeFormSpawnableCell();
       e.addLifeForm(alien, loc.y, loc.x);
-      AIs.add(new AIContext(e, alien));
+      AIs.add(new TestAIContext(e, alien));
       e.updateCell(loc.y, loc.x);
     }
 

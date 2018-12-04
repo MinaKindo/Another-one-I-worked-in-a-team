@@ -3,7 +3,7 @@ package state;
 import environment.Environment;
 import environment.Cell;
 import lifeform.LifeForm;
-import state.AIContext;
+import state.TestAIContext;
 
 public class NoWeaponState extends ActionState {
 

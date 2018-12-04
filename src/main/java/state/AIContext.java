@@ -28,6 +28,10 @@ public class AIContext {
 	  currentState = state;
   }
   
+  public ActionState getCurrentState() {
+	  return currentState;
+  }
+  
   public ActionState getHasWeaponState() {
 	  return hasWeaponState;
   }

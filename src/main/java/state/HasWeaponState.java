@@ -12,7 +12,6 @@ public class HasWeaponState extends ActionState {
   @Override
   public void executeAction() {
     // TODO Auto-generated method stub
-
   }
 
 }
