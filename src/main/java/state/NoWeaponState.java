@@ -17,14 +17,18 @@ public class NoWeaponState extends ActionState {
     if (lifeForm.getCurrentLifePoints() == 0) {
       ai.setCurrentState(ai.getDeadState());
     } else {
-      Weapon[] list  = new Weapon[2];
+      Weapon[] list = new Weapon[2];
       list = environment.getWeapons(lifeForm.getRow(), lifeForm.getCol());
       for (int i = 0; i < 2; i++) {
         if (list[i] != null) {
           lifeForm.pickUpWeapon(list[i]);
+          environment.removeWeapon(list[i], lifeForm.getRow(), lifeForm.getCol());
+          environment.updateCell(lifeForm.getRow(), lifeForm.getCol());
           ai.setCurrentState(ai.getHasWeaponState());
+          break;
         }
-      } if (lifeForm.hasWeapon() == false) {
+      }
+      if (lifeForm.hasWeapon() == false) {
         search();
       }
     }
@@ -42,6 +46,10 @@ public class NoWeaponState extends ActionState {
     } else if (randomDirection == 3) {
       lifeForm.setDirection("West");
     }
+    int oldRow = lifeForm.getRow();
+    int oldCol = lifeForm.getCol();
     environment.move(lifeForm);
+    environment.updateCell(oldRow, oldCol);
+    environment.updateCell(lifeForm.getRow(), lifeForm.getCol());
   }
 }
