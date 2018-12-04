@@ -2,6 +2,7 @@ package state;
 
 import environment.Environment;
 import lifeform.LifeForm;
+import state.AIContext;
 
 public class OutOfAmmoState extends ActionState {
 
@@ -11,8 +12,19 @@ public class OutOfAmmoState extends ActionState {
 
   @Override
   public void executeAction() {
-    // TODO Auto-generated method stub
+    if (lifeForm.getCurrentLifePoints() == 0) {
+      ai.setCurrentState(ai.getDeadState());
+    } else {
+      lifeForm.reload();
+      ai.setCurrentState(ai.getHasWeaponState());
+    }
 
+  }
+
+  @Override
+  public void search() {
+    // TODO Auto-generated method stub
+    
   }
 
 }

@@ -15,4 +15,10 @@ public class DeadState extends ActionState {
 
   }
 
+  @Override
+  public void search() {
+    // TODO Auto-generated method stub
+    
+  }
+
 }
