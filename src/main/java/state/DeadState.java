@@ -1,7 +1,9 @@
 package state;
 
+import environment.CellInfo;
 import environment.Environment;
 import lifeform.LifeForm;
+import weapon.Weapon;
 
 public class DeadState extends ActionState {
 
@@ -11,7 +13,13 @@ public class DeadState extends ActionState {
 
   @Override
   public void executeAction() {
-    // TODO Auto-generated method stub
+    if(lifeForm.hasWeapon()) {
+    	Weapon droppedWeapon = lifeForm.dropWeapon();
+    	CellInfo randomCell = environment.getRandomCell();
+    	environment.addWeapon(droppedWeapon, randomCell.getRow(), randomCell.getCol());
+    	lifeForm.setCurrentLifePoints(lifeForm.getMaxLifePoints());
+		ai.setCurrentState(ai.getHasNoWeaponsState());
+    }
 
   }
 

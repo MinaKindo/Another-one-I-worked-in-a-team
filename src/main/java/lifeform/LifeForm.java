@@ -203,4 +203,8 @@ public abstract class LifeForm {
   public int getCol() {
     return col;
   }
+  
+  public void setCurrentLifePoints(int lp) {
+	  currentLifePoints = lp;
+  }
 }
