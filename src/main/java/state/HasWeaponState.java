@@ -14,4 +14,10 @@ public class HasWeaponState extends ActionState {
     // TODO Auto-generated method stub
   }
 
+  @Override
+  public void search() {
+    // TODO Auto-generated method stub
+    
+  }
+
 }
