@@ -14,7 +14,7 @@ public class PlasmaCannon extends GenericWeapon {
 	public PlasmaCannon()
 	{
 		baseDamage = 50; 
-		maxRange = 20; 
+		maxRange = 40; 
 		rateOfFire = 1; 
 		maxAmmo = 4; 
 		currentAmmo = 4; 
