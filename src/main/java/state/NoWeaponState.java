@@ -32,6 +32,16 @@ public class NoWeaponState extends ActionState {
 
   @Override
   public void search() {
+    int randomDirection = (int) (Math.random() * 4); // [0, 3]
+    if (randomDirection == 0) {
+      lifeForm.setDirection("North");
+    } else if (randomDirection == 1) {
+      lifeForm.setDirection("South");
+    } else if (randomDirection == 2) {
+      lifeForm.setDirection("East");
+    } else if (randomDirection == 3) {
+      lifeForm.setDirection("West");
+    }
     environment.move(lifeForm);
   }
 }

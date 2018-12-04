@@ -23,6 +23,10 @@ public class AIContext {
 	  currentState.executeAction();
   }
   
+  public ActionState getCurrentState() {
+    return currentState;
+  }
+  
   public void setCurrentState(ActionState state) {
 	  currentState = state;
   }
