@@ -29,8 +29,7 @@ public class Simulator implements TimerObserver {
 
   private List<AIContext> AIs = new ArrayList<>();
 
-  public Simulator(Environment e, Timer timer, int numHumans, int numAliens)
-      throws RecoveryRateException {
+  public Simulator(Environment e, Timer timer, int numHumans, int numAliens) throws RecoveryRateException {
     this.e = e;
     timer.addTimeObserver(this);
 
@@ -48,7 +47,7 @@ public class Simulator implements TimerObserver {
     }
 
     // generate aliens
-    for (int i = 0; i < numHumans; i++) {
+    for (int i = 0; i < numAliens; i++) {
 
       int lifePts = (int) (Math.random() * 6) + 5; // [5, 10]
 

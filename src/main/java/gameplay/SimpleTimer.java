@@ -37,9 +37,7 @@ public class SimpleTimer extends Thread implements Timer {
 	 * @see gameplay.Timer#addTimeObserver(gameplay.TimerObserver)
 	 */
 	public void addTimeObserver(TimerObserver observer) {
-		observers.add(observer); 
-		System.out.println("add observer: "+observer); 
-
+		observers.add(observer);
 	}
 
 	/* (non-Javadoc)

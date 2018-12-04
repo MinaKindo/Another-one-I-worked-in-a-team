@@ -17,7 +17,7 @@ public class AIContext {
     outOfAmmoState = new OutOfAmmoState(e, this, l);
     deadState = new DeadState(e, this, l);
     noWeaponState = new NoWeaponState(e, this, l);
-	currentState = noWeaponState;
+    currentState = noWeaponState;
   }
   
   public void executeAction() {
