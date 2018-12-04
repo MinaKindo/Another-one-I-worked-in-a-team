@@ -1,3 +1,4 @@
+
 package state;
 
 import static org.junit.Assert.*;
@@ -42,5 +43,4 @@ public class TestDeadState {
 		assertFalse(h.hasWeapon());	
 		assertEquals(10, h.getCurrentLifePoints());
 	}
-
 }

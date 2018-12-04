@@ -15,6 +15,7 @@ import recovery.RecoveryFractional;
 import recovery.RecoveryLinear;
 import recovery.RecoveryNone;
 import state.AIContext;
+import state.TestAIContext;
 import weapon.ChainGun;
 import weapon.Pistol;
 import weapon.PlasmaCannon;
@@ -29,8 +30,7 @@ public class Simulator implements TimerObserver {
 
   private List<AIContext> AIs = new ArrayList<>();
 
-  public Simulator(Environment e, Timer timer, int numHumans, int numAliens)
-      throws RecoveryRateException {
+  public Simulator(Environment e, Timer timer, int numHumans, int numAliens) throws RecoveryRateException {
     this.e = e;
     timer.addTimeObserver(this);
 
@@ -48,15 +48,15 @@ public class Simulator implements TimerObserver {
     }
 
     // generate aliens
-    for (int i = 0; i < numHumans; i++) {
+    for (int i = 0; i < numAliens; i++) {
 
       int lifePts = (int) (Math.random() * 6) + 5; // [5, 10]
 
       RecoveryBehavior rb = null;
       int rbChance = (int) (Math.random() * 3); // [0, 2]
-      if (rbChance < 1) {
+      if (rbChance == 0) {
         rb = new RecoveryNone();
-      } else if (rbChance < 2) {
+      } else if (rbChance == 1) {
         int recoveryAmt = (int) (Math.random() * 3) + 1; // [1, 3]
         rb = new RecoveryLinear(recoveryAmt);
       } else {
@@ -79,9 +79,9 @@ public class Simulator implements TimerObserver {
 
       Weapon weapon;
       int weaponChance = (int) (Math.random() * 3); // [0, 2]
-      if (weaponChance < 1) {
+      if (weaponChance == 0) {
         weapon = new ChainGun();
-      } else if (weaponChance < 2) {
+      } else if (weaponChance == 1) {
         weapon = new Pistol();
       } else {
         weapon = new PlasmaCannon();
@@ -91,9 +91,9 @@ public class Simulator implements TimerObserver {
       for (int j = 0; j < numAttachments; j++) {
         int attachmentChance = (int) (Math.random() * 3); // [0, 2]
         try {
-          if (attachmentChance < 1) {
+          if (attachmentChance == 0) {
             weapon = new PowerBooster(weapon);
-          } else if (attachmentChance < 2) {
+          } else if (attachmentChance == 1) {
             weapon = new Scope(weapon);
           } else {
             weapon = new Stabilizer(weapon);

@@ -9,7 +9,6 @@ public class AIContext {
   private ActionState outOfAmmoState;
   private ActionState deadState;
   private ActionState noWeaponState;
-  
   private ActionState currentState;
   
   public AIContext(Environment e, LifeForm l) {
@@ -17,15 +16,24 @@ public class AIContext {
     outOfAmmoState = new OutOfAmmoState(e, this, l);
     deadState = new DeadState(e, this, l);
     noWeaponState = new NoWeaponState(e, this, l);
-	currentState = noWeaponState;
+
+    currentState = noWeaponState;
   }
   
   public void executeAction() {
 	  currentState.executeAction();
   }
   
+  public ActionState getCurrentState() {
+    return currentState;
+  }
+  
   public void setCurrentState(ActionState state) {
 	  currentState = state;
+  }
+  
+  public ActionState getCurrentState() {
+	  return currentState;
   }
   
   public ActionState getHasWeaponState() {
@@ -40,7 +48,8 @@ public class AIContext {
 	  return outOfAmmoState;
   }
   
-  public ActionState getdeadState() {
+  public ActionState getDeadState() {
 	  return deadState;
   }
+  
 }
