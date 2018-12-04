@@ -16,4 +16,5 @@ public abstract class ActionState {
   }
   
   public abstract void executeAction();
+  public abstract void search();
 }
