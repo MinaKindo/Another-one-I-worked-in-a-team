@@ -1433,7 +1433,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
       // Invoker inv = builder.loadCommands();
 
       // simulator starts here for AI vs AI play
-      SimpleTimer timer = new SimpleTimer(1000);
+      SimpleTimer timer = new SimpleTimer(100);
 
       // 15 humans
       // 10 Aliens

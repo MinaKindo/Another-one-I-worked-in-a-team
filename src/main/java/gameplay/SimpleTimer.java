@@ -73,7 +73,7 @@ public class SimpleTimer extends Thread implements Timer {
 	{
 		try {
 			//update the round, then sleep for an interval
-			for (int i =0; i < 50; i++)
+			for (int i =0; i < 200; i++)
 			{
 				Thread.sleep(sleepTime);
 				timeChanged();

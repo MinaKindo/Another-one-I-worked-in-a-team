@@ -23,11 +23,12 @@ public class TestDeadState {
 		AIContext ai = new AIContext(e, h); 
 		h.pickUpWeapon(pistol);
 		assertTrue(h.hasWeapon());
-		h.takeHit(10);
-		DeadState state = new DeadState(e, ai, h);
-		state.executeAction();
+		h.takeHit(20);
+		ai.setCurrentState(ai.getDeadState());
+		ai.executeAction();
 		assertFalse(h.hasWeapon());
 		assertEquals(10, h.getCurrentLifePoints());
+		assertEquals(ai.getCurrentState(), ai.getHasNoWeaponsState());
 		
 	}
 	
@@ -37,10 +38,11 @@ public class TestDeadState {
 		LifeForm h = new Human("bob", 10, 10);
 		AIContext ai = new AIContext(e, h); 
 		assertFalse(h.hasWeapon());
-		h.takeHit(10);
-		DeadState state = new DeadState(e, ai, h);
-		state.executeAction();
+		h.takeHit(20);
+		ai.setCurrentState(ai.getDeadState());
+		ai.executeAction();
 		assertFalse(h.hasWeapon());	
 		assertEquals(10, h.getCurrentLifePoints());
+		assertEquals(ai.getCurrentState(), ai.getHasNoWeaponsState());
 	}
 }
