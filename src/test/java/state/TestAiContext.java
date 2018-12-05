@@ -11,6 +11,8 @@ import lifeform.LifeForm;
 
 public class TestAiContext {
 
+  // lab 7 tests
+  
   @Test
   public void testCanChangeState() throws RecoveryRateException {
     LifeForm et = new Alien("et", 50);

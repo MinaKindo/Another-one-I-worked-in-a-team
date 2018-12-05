@@ -116,6 +116,10 @@ public class Simulator implements TimerObserver {
     }
   }
 
+  public List<AiContext> getAis() {
+    return ais;
+  }
+
   private Point getLifeFormSpawnableCell() {
     Point loc = null;
 

@@ -24,6 +24,8 @@ public class TestDeadState {
     environment.clearBoard();
   }
 
+  // lab 7 tests
+
   @Test
   public void testWithWeapon() throws RecoveryRateException {
     LifeForm h = new Human("bob", 10, 10);

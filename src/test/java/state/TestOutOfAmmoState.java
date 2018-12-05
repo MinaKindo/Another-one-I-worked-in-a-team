@@ -14,6 +14,8 @@ import weapon.Weapon;
 
 public class TestOutOfAmmoState {
 
+  // lab 7 tests
+
   @Test
   public void testInitialization() {
     Environment environment = Environment.getEnvironment(4, 4);
@@ -21,7 +23,7 @@ public class TestOutOfAmmoState {
     AiContext ai = new AiContext(environment, lifeForm);
     ai.setCurrentState(ai.getOutOfAmmoState());
   }
-  
+
   @Test
   public void testReload() throws WeaponException {
     Environment environment = Environment.getEnvironment(4, 4);
@@ -47,7 +49,7 @@ public class TestOutOfAmmoState {
     ai.executeAction();
     assertEquals(ai.getCurrentState(), ai.getHasWeaponState());
   }
-  
+
   @Test
   public void testDead() {
     Environment environment = Environment.getEnvironment(4, 4);
@@ -57,5 +59,5 @@ public class TestOutOfAmmoState {
     ai.executeAction();
     assertEquals(ai.getCurrentState(), ai.getDeadState());
   }
- 
+
 }

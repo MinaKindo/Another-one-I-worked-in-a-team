@@ -12,6 +12,8 @@ import weapon.Weapon;
 
 public class TestNoWeaponState {
 
+  // lab 7 tests
+  
   @Test
   public void testWeapon() {
     Environment environment = Environment.getEnvironment(4, 4);
@@ -24,7 +26,7 @@ public class TestNoWeaponState {
     ai.executeAction();
     assertEquals(ai.getCurrentState(), ai.getHasWeaponState());
   }
-  
+
   @Test
   public void testNoWeapon() {
     Environment environment = Environment.getEnvironment(4, 4);
@@ -35,7 +37,7 @@ public class TestNoWeaponState {
     ai.executeAction();
     environment.getLifeForm(1, 2);
   }
-  
+
   @Test
   public void testDead() {
     Environment environment = Environment.getEnvironment(4, 4);
