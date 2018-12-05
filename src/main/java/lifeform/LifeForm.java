@@ -86,7 +86,7 @@ public abstract class LifeForm {
   public int getMaxLifePoints() {
     return maxLifePoints;
   }
-  
+
   /**
    * Life points are reduced by the specified damage.
    * 
@@ -164,7 +164,7 @@ public abstract class LifeForm {
     }
     return oldWeapon;
   }
-  
+
   public Weapon getWeapon() {
     return weapon;
   }
@@ -203,8 +203,8 @@ public abstract class LifeForm {
   public int getCol() {
     return col;
   }
-  
+
   public void setCurrentLifePoints(int lp) {
-	  currentLifePoints = lp;
+    currentLifePoints = lp;
   }
 }

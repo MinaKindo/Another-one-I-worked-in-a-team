@@ -1,6 +1,3 @@
-/**
- * 
- */
 package gui;
 
 import java.awt.BorderLayout;
@@ -42,9 +39,11 @@ import weapon.Weapon;
  * @author Dr. Alice Armstrong
  *
  */
-public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
+public class Gui extends JFrame implements ActionListener, EnvironmentObserver {
 
-  JPanel map, legend, statsPanel;
+  JPanel map;
+  JPanel legend;
+  JPanel statsPanel;
   JButton[][] mapArray;
   JLabel stats;
 
@@ -60,21 +59,24 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
   Color black = new Color(0, 0, 0);
   Color white = new Color(255, 255, 255);
   Color pink = new Color(200, 126, 135); // active cell color
-  Color weapon_0 = new Color(104, 208, 255); // teal, weapon with no attachments
-  Color weapon_1 = new Color(128, 0, 255); // purple, weapon with 1 attachment
-  Color weapon_2 = new Color(128, 0, 64); // magenta, weapon with 2 attachments
+  Color weapon00 = new Color(104, 208, 255); // teal, weapon with no attachments
+  Color weapon01 = new Color(128, 0, 255); // purple, weapon with 1 attachment
+  Color weapon02 = new Color(128, 0, 64); // magenta, weapon with 2 attachments
   Color fullHealth = new Color(0, 128, 0); // green
   Color halfHealth = new Color(229, 110, 0); // orange
   Color lowHealth = new Color(236, 0, 0); // red
 
-  final int GRID_SIZE = 40; // size of a grid square
-  final int WEAPON_SIZE = 7; // size of a weapon icon (circle)
-  final int LIFEFORM_SIZE = 20; // size of an life form icon
+  final int gridSize = 40; // size of a grid square
+  final int weaponSize = 7; // size of a weapon icon (circle)
+  final int lifeFormSize = 20; // size of an life form icon
 
-  static final int ROWS = 7;  // 12
-  static final int COLS = 7;  // 12
+  static final int ROWS = 7; // 12
+  static final int COLS = 7; // 12
 
-  public GUI() throws RecoveryRateException {
+  /**
+   * Creates a Gui
+   */
+  public Gui() throws RecoveryRateException {
 
     // create the game environment
     e = Environment.getEnvironment(ROWS, COLS);
@@ -83,7 +85,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
 
     // the area for the map grid
     map = new JPanel(new GridLayout(ROWS, COLS));
-    map.setPreferredSize(new Dimension(GRID_SIZE * ROWS, GRID_SIZE * COLS));
+    map.setPreferredSize(new Dimension(gridSize * ROWS, gridSize * COLS));
     mapArray = new JButton[ROWS][COLS];
     for (int r = 0; r < ROWS; r++) {
       for (int c = 0; c < COLS; c++) {
@@ -103,10 +105,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
     // the area for the Legend
     legend = new JPanel();
     // legend.setPreferredSize(new Dimension(300, 600));
-    JPanel icons = new JPanel(new GridLayout(0, 1));
-    JPanel descr = new JPanel(new GridLayout(0, 1));
     JLabel[][] legendArray = new JLabel[20][2];
-    Dimension labelDim = new Dimension(GRID_SIZE * 10, GRID_SIZE);
     ImageIcon temp;
 
     // fill the legend
@@ -114,9 +113,12 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
     temp = createEmptyCell();
     temp = addFirstWeapon(temp, 0);
     legendArray[1][0] = new JLabel(temp);
+    JPanel icons = new JPanel(new GridLayout(0, 1));
     icons.add(legendArray[1][0]);
     legendArray[1][1] = new JLabel("<html>one weapon with no attachments</html>");
+    Dimension labelDim = new Dimension(gridSize * 10, gridSize);
     legendArray[1][1].setPreferredSize(labelDim);
+    JPanel descr = new JPanel(new GridLayout(0, 1));
     descr.add(legendArray[1][1]);
 
     // one weapon only - one attachment
@@ -164,10 +166,10 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
      */
 
     // an alien with no weapons, two weapons in the cell
-    LifeForm tempAlien = new Alien("Test Alien", 10);
     temp = createEmptyCell();
     temp = addFirstWeapon(temp, 1);
     temp = addSecondWeapon(temp, 1);
+    LifeForm tempAlien = new Alien("Test Alien", 10);
     temp = addAlien(temp, tempAlien);
     legendArray[7][0] = new JLabel(temp);
     icons.add(legendArray[7][0]);
@@ -304,13 +306,13 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
    * @return
    */
   public ImageIcon createEmptyCell() {
-    BufferedImage empty = new BufferedImage(GRID_SIZE, GRID_SIZE, BufferedImage.TYPE_3BYTE_BGR);
+    BufferedImage empty = new BufferedImage(gridSize, gridSize, BufferedImage.TYPE_3BYTE_BGR);
     Graphics drawer = empty.getGraphics();
 
     drawer.setColor(grey);
-    drawer.fillRect(0, 0, GRID_SIZE, GRID_SIZE);
+    drawer.fillRect(0, 0, gridSize, gridSize);
     drawer.setColor(black);
-    drawer.drawRect(0, 0, GRID_SIZE, GRID_SIZE);
+    drawer.drawRect(0, 0, gridSize, gridSize);
     // drawer.setColor(new Color(0,255,0));
     // drawer.fillOval(20, 20, 10, 10);
 
@@ -324,13 +326,13 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
    * @return
    */
   public ImageIcon createActiveCell() {
-    BufferedImage empty = new BufferedImage(GRID_SIZE, GRID_SIZE, BufferedImage.TYPE_3BYTE_BGR);
+    BufferedImage empty = new BufferedImage(gridSize, gridSize, BufferedImage.TYPE_3BYTE_BGR);
     Graphics drawer = empty.getGraphics();
 
     drawer.setColor(pink);
-    drawer.fillRect(0, 0, GRID_SIZE, GRID_SIZE);
+    drawer.fillRect(0, 0, gridSize, gridSize);
     drawer.setColor(black);
-    drawer.drawRect(0, 0, GRID_SIZE, GRID_SIZE);
+    drawer.drawRect(0, 0, gridSize, gridSize);
     // drawer.setColor(new Color(0,255,0));
     // drawer.fillOval(20, 20, 10, 10);
 
@@ -359,14 +361,14 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
 
     // set the appropriate fill color for the weapon icon
     if (numAttachments == 0) {
-      drawer.setColor(weapon_0);
+      drawer.setColor(weapon00);
     } else if (numAttachments == 1) {
-      drawer.setColor(weapon_1);
+      drawer.setColor(weapon01);
     } else {
-      drawer.setColor(weapon_2);
+      drawer.setColor(weapon02);
     }
 
-    drawer.fillOval(GRID_SIZE - WEAPON_SIZE, 0, WEAPON_SIZE, WEAPON_SIZE);
+    drawer.fillOval(gridSize - weaponSize, 0, weaponSize, weaponSize);
 
     return new ImageIcon(bi);
   }
@@ -392,14 +394,14 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
 
     // set the appropriate fill color for the weapon icon
     if (numAttachments == 0) {
-      drawer.setColor(weapon_0);
+      drawer.setColor(weapon00);
     } else if (numAttachments == 1) {
-      drawer.setColor(weapon_1);
+      drawer.setColor(weapon01);
     } else {
-      drawer.setColor(weapon_2);
+      drawer.setColor(weapon02);
     }
 
-    drawer.fillOval(GRID_SIZE - WEAPON_SIZE, GRID_SIZE - WEAPON_SIZE, WEAPON_SIZE, WEAPON_SIZE);
+    drawer.fillOval(gridSize - weaponSize, gridSize - weaponSize, weaponSize, weaponSize);
 
     return new ImageIcon(bi);
   }
@@ -428,7 +430,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
     // set the fill color to white
     drawer.setColor(white);
     // fill the Alien icon
-    drawer.fillOval(GRID_SIZE / 4, GRID_SIZE / 4, LIFEFORM_SIZE, LIFEFORM_SIZE);
+    drawer.fillOval(gridSize / 4, gridSize / 4, lifeFormSize, lifeFormSize);
 
     // draw the life bar
     icon = addLifeBar(new ImageIcon(bi), alien);
@@ -468,7 +470,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
     // set the fill color to white
     drawer.setColor(white);
     // fill the Alien icon
-    drawer.fillRect(GRID_SIZE / 4, GRID_SIZE / 4, LIFEFORM_SIZE, LIFEFORM_SIZE);
+    drawer.fillRect(gridSize / 4, gridSize / 4, lifeFormSize, lifeFormSize);
 
     // draw the life bar
     icon = addLifeBar(new ImageIcon(bi), human);
@@ -504,15 +506,15 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
 
     // set the appropriate fill color for the weapon icon
     if (numAttachments == 0) {
-      drawer.setColor(weapon_0);
+      drawer.setColor(weapon00);
     } else if (numAttachments == 1) {
-      drawer.setColor(weapon_1);
+      drawer.setColor(weapon01);
     } else {
-      drawer.setColor(weapon_2);
+      drawer.setColor(weapon02);
     }
 
-    drawer.fillOval(GRID_SIZE / 2 - WEAPON_SIZE / 2, GRID_SIZE / 2 - WEAPON_SIZE / 2, WEAPON_SIZE,
-        WEAPON_SIZE);
+    drawer.fillOval(gridSize / 2 - weaponSize / 2, gridSize / 2 - weaponSize / 2, weaponSize,
+        weaponSize);
     return new ImageIcon(bi);
   }
 
@@ -520,8 +522,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
    * add a lifebar "behind" a Lifeform. If the LifeForm is facing North, the
    * lifebar will be on the south side of the lifeform icon
    * 
-   * @param icon           the current cell image
-   * @param numAttachments how many attachments the lifeform's weapon has
+   * @param icon the current cell image
    * @return the updated image
    */
   public ImageIcon addLifeBar(ImageIcon icon, LifeForm being) {
@@ -539,7 +540,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
     double life = (double) being.getCurrentLifePoints() / being.getMaxLifePoints();
 
     // set the length of the life bar
-    int barsize = (int) (life * GRID_SIZE - 2);
+    int barsize = (int) (life * gridSize - 2);
 
     // set the appropriate fill color for the life bar
     if (life > 0.8) {
@@ -553,16 +554,16 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
     // pick a location
     if (being.getDirection().equals("North")) {
       // place the bar on the south side of the icon
-      drawer.fillRect(2, GRID_SIZE - WEAPON_SIZE - 1, barsize, 2);
+      drawer.fillRect(2, gridSize - weaponSize - 1, barsize, 2);
     } else if (being.getDirection().equals("South")) {
       // place the bar on the north side of the icon
-      drawer.fillRect(2, WEAPON_SIZE + 1, barsize, 2);
+      drawer.fillRect(2, weaponSize + 1, barsize, 2);
     } else if (being.getDirection().equals("East")) {
       // place the bar on the west side of the icon
-      drawer.fillRect(WEAPON_SIZE + 1, 2, 2, barsize);
+      drawer.fillRect(weaponSize + 1, 2, 2, barsize);
     } else {
       // place the bar on the east side of the icon
-      drawer.fillRect(GRID_SIZE - WEAPON_SIZE - 1, 2, 2, barsize);
+      drawer.fillRect(gridSize - weaponSize - 1, 2, 2, barsize);
     }
 
     return new ImageIcon(bi);
@@ -588,7 +589,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
 
     // set the background color
     drawer.setColor(grey);
-    drawer.fillOval(GRID_SIZE - WEAPON_SIZE, 0, WEAPON_SIZE, WEAPON_SIZE);
+    drawer.fillOval(gridSize - weaponSize, 0, weaponSize, weaponSize);
 
     return new ImageIcon(bi);
   }
@@ -612,7 +613,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
 
     // set to background color
     drawer.setColor(grey);
-    drawer.fillOval(GRID_SIZE - WEAPON_SIZE, GRID_SIZE - WEAPON_SIZE, WEAPON_SIZE, WEAPON_SIZE);
+    drawer.fillOval(gridSize - weaponSize, gridSize - weaponSize, weaponSize, weaponSize);
 
     return new ImageIcon(bi);
   }
@@ -638,8 +639,8 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
     // set to white (the life form color)
     drawer.setColor(white);
 
-    drawer.fillOval(GRID_SIZE / 2 - WEAPON_SIZE / 2, GRID_SIZE / 2 - WEAPON_SIZE / 2, WEAPON_SIZE,
-        WEAPON_SIZE);
+    drawer.fillOval(gridSize / 2 - weaponSize / 2, gridSize / 2 - weaponSize / 2, weaponSize,
+        weaponSize);
     return new ImageIcon(bi);
   }
 
@@ -667,7 +668,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
     // set the fill color to white
     drawer.setColor(grey);
     // fill the Alien icon
-    drawer.fillRect(GRID_SIZE / 4, GRID_SIZE / 4, LIFEFORM_SIZE, LIFEFORM_SIZE);
+    drawer.fillRect(gridSize / 4, gridSize / 4, lifeFormSize, lifeFormSize);
 
     return new ImageIcon(bi);
   }
@@ -696,16 +697,16 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
     // pick a location
     if (being.getDirection().equals("North")) {
       // place the bar on the south side of the icon
-      drawer.fillRect(2, GRID_SIZE - WEAPON_SIZE - 1, GRID_SIZE - 2, 2);
+      drawer.fillRect(2, gridSize - weaponSize - 1, gridSize - 2, 2);
     } else if (being.getDirection().equals("South")) {
       // place the bar on the north side of the icon
-      drawer.fillRect(2, WEAPON_SIZE + 1, GRID_SIZE - 2, 2);
+      drawer.fillRect(2, weaponSize + 1, gridSize - 2, 2);
     } else if (being.getDirection().equals("East")) {
       // place the bar on the west side of the icon
-      drawer.fillRect(WEAPON_SIZE + 1, 2, 2, GRID_SIZE - 2);
+      drawer.fillRect(weaponSize + 1, 2, 2, gridSize - 2);
     } else {
       // place the bar on the east side of the icon
-      drawer.fillRect(GRID_SIZE - WEAPON_SIZE - 1, 2, 2, GRID_SIZE - 2);
+      drawer.fillRect(gridSize - weaponSize - 1, 2, 2, gridSize - 2);
     }
 
     return new ImageIcon(bi);
@@ -717,12 +718,12 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
    * @return
    */
   public ImageIcon createEmptyPad() {
-    BufferedImage empty = new BufferedImage(240, GRID_SIZE, BufferedImage.TYPE_3BYTE_BGR);
+    BufferedImage empty = new BufferedImage(240, gridSize, BufferedImage.TYPE_3BYTE_BGR);
     Graphics drawer = empty.getGraphics();
     Color grey = new Color(240, 240, 240);
 
     drawer.setColor(grey);
-    drawer.fillRect(0, 0, 600, GRID_SIZE);
+    drawer.fillRect(0, 0, 600, gridSize);
 
     return new ImageIcon(empty);
   }
@@ -845,7 +846,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
     Human h3 = new Human("Human3", 25, 2);
     Human h4 = new Human("Human4", 30, 8);
 
-    Human[] hArray = { h1, h2, h3, h4 };
+    Human[] harray = { h1, h2, h3, h4 };
 
     boolean placed = false;
     // add humans to random locations
@@ -853,10 +854,10 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
     int randCol = (int) (Math.random() * COLS);
     for (int i = 0; i < 4; i++) {
       do {
-        placed = e.addLifeForm(hArray[i], randRow, randCol);
+        placed = e.addLifeForm(harray[i], randRow, randCol);
         if (placed) {
           tempIcon = (ImageIcon) mapArray[randRow][randCol].getIcon();
-          mapArray[randRow][randCol].setIcon(addHuman(tempIcon, hArray[i]));
+          mapArray[randRow][randCol].setIcon(addHuman(tempIcon, harray[i]));
         }
         randRow = (int) (Math.random() * ROWS);
         randCol = (int) (Math.random() * COLS);
@@ -871,14 +872,14 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
       Alien a2 = new Alien("Alien2", 30, l, 2);
       Alien a3 = new Alien("Alien3", 10, f, 1);
       Alien a4 = new Alien("Alien4", 15, l, 4);
-      Alien[] aArray = { a1, a2, a3, a4 };
+      Alien[] aarray = { a1, a2, a3, a4 };
 
       for (int i = 0; i < 4; i++) {
         do {
-          placed = e.addLifeForm(aArray[i], randRow, randCol);
+          placed = e.addLifeForm(aarray[i], randRow, randCol);
           if (placed) {
             tempIcon = (ImageIcon) mapArray[randRow][randCol].getIcon();
-            mapArray[randRow][randCol].setIcon(addAlien(tempIcon, aArray[i]));
+            mapArray[randRow][randCol].setIcon(addAlien(tempIcon, aarray[i]));
           }
           randRow = (int) (Math.random() * ROWS);
           randCol = (int) (Math.random() * COLS);
@@ -892,11 +893,11 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
 
     // add Weapons to the Evironment
     Pistol p;
-    PlasmaCannon pC;
+    PlasmaCannon pc;
     ChainGun c;
     Scope s;
     Stabilizer st;
-    PowerBooster pB;
+    PowerBooster pb;
 
     int randW;
     int randA;
@@ -949,14 +950,14 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
               e.addWeapon(st, randRow, randCol);
             } else if (randA == 2) {
               // add a PowerBooster
-              pB = new PowerBooster(s);
+              pb = new PowerBooster(s);
               tempIcon = (ImageIcon) mapArray[randRow][randCol].getIcon();
               if (e.getWeapons(randRow, randCol)[0] == null) {
                 mapArray[randRow][randCol].setIcon(addFirstWeapon(tempIcon, 2));
               } else {
                 mapArray[randRow][randCol].setIcon(addSecondWeapon(tempIcon, 2));
               }
-              e.addWeapon(pB, randRow, randCol);
+              e.addWeapon(pb, randRow, randCol);
             } else {
               // no second attachment
               tempIcon = (ImageIcon) mapArray[randRow][randCol].getIcon();
@@ -994,14 +995,14 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
               e.addWeapon(st, randRow, randCol);
             } else if (randA == 2) {
               // add a PowerBooster
-              pB = new PowerBooster(st);
+              pb = new PowerBooster(st);
               tempIcon = (ImageIcon) mapArray[randRow][randCol].getIcon();
               if (e.getWeapons(randRow, randCol)[0] == null) {
                 mapArray[randRow][randCol].setIcon(addFirstWeapon(tempIcon, 2));
               } else {
                 mapArray[randRow][randCol].setIcon(addSecondWeapon(tempIcon, 2));
               }
-              e.addWeapon(pB, randRow, randCol);
+              e.addWeapon(pb, randRow, randCol);
             } else {
               // no second attachment
               tempIcon = (ImageIcon) mapArray[randRow][randCol].getIcon();
@@ -1015,12 +1016,12 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
           } else if (randA == 2) {
             // add a PowerBooster as the first attachment
             // add a scope as the first attachment
-            pB = new PowerBooster(p);
+            pb = new PowerBooster(p);
             randA = (int) (Math.random() * 4);
             // try to add a second attachment
             if (randA == 0) {
               // add a scope
-              s = new Scope(pB);
+              s = new Scope(pb);
               tempIcon = (ImageIcon) mapArray[randRow][randCol].getIcon();
               if (e.getWeapons(randRow, randCol)[0] == null) {
                 mapArray[randRow][randCol].setIcon(addFirstWeapon(tempIcon, 2));
@@ -1030,7 +1031,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
               e.addWeapon(s, randRow, randCol);
             } else if (randA == 1) {
               // add a Stabilizer
-              st = new Stabilizer(pB);
+              st = new Stabilizer(pb);
               tempIcon = (ImageIcon) mapArray[randRow][randCol].getIcon();
               if (e.getWeapons(randRow, randCol)[0] == null) {
                 mapArray[randRow][randCol].setIcon(addFirstWeapon(tempIcon, 2));
@@ -1040,14 +1041,14 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
               e.addWeapon(st, randRow, randCol);
             } else if (randA == 2) {
               // add a PowerBooster
-              pB = new PowerBooster(pB);
+              pb = new PowerBooster(pb);
               tempIcon = (ImageIcon) mapArray[randRow][randCol].getIcon();
               if (e.getWeapons(randRow, randCol)[0] == null) {
                 mapArray[randRow][randCol].setIcon(addFirstWeapon(tempIcon, 2));
               } else {
                 mapArray[randRow][randCol].setIcon(addSecondWeapon(tempIcon, 2));
               }
-              e.addWeapon(pB, randRow, randCol);
+              e.addWeapon(pb, randRow, randCol);
             } else {
               // no second attachment
               tempIcon = (ImageIcon) mapArray[randRow][randCol].getIcon();
@@ -1056,7 +1057,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
               } else {
                 mapArray[randRow][randCol].setIcon(addSecondWeapon(tempIcon, 1));
               }
-              e.addWeapon(pB, randRow, randCol);
+              e.addWeapon(pb, randRow, randCol);
             }
           } else {
             // no attachments
@@ -1069,13 +1070,13 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
             e.addWeapon(p, randRow, randCol);
           }
         } else if (randW == 1) {
-          pC = new PlasmaCannon();
+          pc = new PlasmaCannon();
 
           // try to add an attachment
           randA = (int) (Math.random() * 4);
           if (randA == 0) {
             // add a scope as the first attachment
-            s = new Scope(pC);
+            s = new Scope(pc);
             randA = (int) (Math.random() * 4);
             // try to add a second attachment
             if (randA == 0) {
@@ -1100,14 +1101,14 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
               e.addWeapon(st, randRow, randCol);
             } else if (randA == 2) {
               // add a PowerBooster
-              pB = new PowerBooster(s);
+              pb = new PowerBooster(s);
               tempIcon = (ImageIcon) mapArray[randRow][randCol].getIcon();
               if (e.getWeapons(randRow, randCol)[0] == null) {
                 mapArray[randRow][randCol].setIcon(addFirstWeapon(tempIcon, 2));
               } else {
                 mapArray[randRow][randCol].setIcon(addSecondWeapon(tempIcon, 2));
               }
-              e.addWeapon(pB, randRow, randCol);
+              e.addWeapon(pb, randRow, randCol);
             } else {
               // no second attachment
               tempIcon = (ImageIcon) mapArray[randRow][randCol].getIcon();
@@ -1120,7 +1121,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
             }
           } else if (randA == 1) {
             // add a stabilizer as the first attachment
-            st = new Stabilizer(pC);
+            st = new Stabilizer(pc);
             randA = (int) (Math.random() * 4);
             // try to add a second attachment
             if (randA == 0) {
@@ -1145,14 +1146,14 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
               e.addWeapon(st, randRow, randCol);
             } else if (randA == 2) {
               // add a PowerBooster
-              pB = new PowerBooster(st);
+              pb = new PowerBooster(st);
               tempIcon = (ImageIcon) mapArray[randRow][randCol].getIcon();
               if (e.getWeapons(randRow, randCol)[0] == null) {
                 mapArray[randRow][randCol].setIcon(addFirstWeapon(tempIcon, 2));
               } else {
                 mapArray[randRow][randCol].setIcon(addSecondWeapon(tempIcon, 2));
               }
-              e.addWeapon(pB, randRow, randCol);
+              e.addWeapon(pb, randRow, randCol);
             } else {
               // no second attachment
               tempIcon = (ImageIcon) mapArray[randRow][randCol].getIcon();
@@ -1166,12 +1167,12 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
           } else if (randA == 2) {
             // add a PowerBooster as the first attachment
             // add a scope as the first attachment
-            pB = new PowerBooster(pC);
+            pb = new PowerBooster(pc);
             randA = (int) (Math.random() * 4);
             // try to add a second attachment
             if (randA == 0) {
               // add a scope
-              s = new Scope(pB);
+              s = new Scope(pb);
               tempIcon = (ImageIcon) mapArray[randRow][randCol].getIcon();
               if (e.getWeapons(randRow, randCol)[0] == null) {
                 mapArray[randRow][randCol].setIcon(addFirstWeapon(tempIcon, 2));
@@ -1181,7 +1182,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
               e.addWeapon(s, randRow, randCol);
             } else if (randA == 1) {
               // add a Stabilizer
-              st = new Stabilizer(pB);
+              st = new Stabilizer(pb);
               tempIcon = (ImageIcon) mapArray[randRow][randCol].getIcon();
               if (e.getWeapons(randRow, randCol)[0] == null) {
                 mapArray[randRow][randCol].setIcon(addFirstWeapon(tempIcon, 2));
@@ -1191,14 +1192,14 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
               e.addWeapon(st, randRow, randCol);
             } else if (randA == 2) {
               // add a PowerBooster
-              pB = new PowerBooster(pB);
+              pb = new PowerBooster(pb);
               tempIcon = (ImageIcon) mapArray[randRow][randCol].getIcon();
               if (e.getWeapons(randRow, randCol)[0] == null) {
                 mapArray[randRow][randCol].setIcon(addFirstWeapon(tempIcon, 2));
               } else {
                 mapArray[randRow][randCol].setIcon(addSecondWeapon(tempIcon, 2));
               }
-              e.addWeapon(pB, randRow, randCol);
+              e.addWeapon(pb, randRow, randCol);
             } else {
               // no second attachment
               tempIcon = (ImageIcon) mapArray[randRow][randCol].getIcon();
@@ -1207,7 +1208,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
               } else {
                 mapArray[randRow][randCol].setIcon(addSecondWeapon(tempIcon, 1));
               }
-              e.addWeapon(pB, randRow, randCol);
+              e.addWeapon(pb, randRow, randCol);
             }
           } else {
             // no attachments
@@ -1217,7 +1218,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
             } else {
               mapArray[randRow][randCol].setIcon(addSecondWeapon(tempIcon, 0));
             }
-            e.addWeapon(pC, randRow, randCol);
+            e.addWeapon(pc, randRow, randCol);
           }
         } else if (randW == 2) {
           // add a Chain Gun
@@ -1252,14 +1253,14 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
               e.addWeapon(st, randRow, randCol);
             } else if (randA == 2) {
               // add a PowerBooster
-              pB = new PowerBooster(s);
+              pb = new PowerBooster(s);
               tempIcon = (ImageIcon) mapArray[randRow][randCol].getIcon();
               if (e.getWeapons(randRow, randCol)[0] == null) {
                 mapArray[randRow][randCol].setIcon(addFirstWeapon(tempIcon, 2));
               } else {
                 mapArray[randRow][randCol].setIcon(addSecondWeapon(tempIcon, 2));
               }
-              e.addWeapon(pB, randRow, randCol);
+              e.addWeapon(pb, randRow, randCol);
             } else {
               // no second attachment
               tempIcon = (ImageIcon) mapArray[randRow][randCol].getIcon();
@@ -1297,14 +1298,14 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
               e.addWeapon(st, randRow, randCol);
             } else if (randA == 2) {
               // add a PowerBooster
-              pB = new PowerBooster(st);
+              pb = new PowerBooster(st);
               tempIcon = (ImageIcon) mapArray[randRow][randCol].getIcon();
               if (e.getWeapons(randRow, randCol)[0] == null) {
                 mapArray[randRow][randCol].setIcon(addFirstWeapon(tempIcon, 2));
               } else {
                 mapArray[randRow][randCol].setIcon(addSecondWeapon(tempIcon, 2));
               }
-              e.addWeapon(pB, randRow, randCol);
+              e.addWeapon(pb, randRow, randCol);
             } else {
               // no second attachment
               tempIcon = (ImageIcon) mapArray[randRow][randCol].getIcon();
@@ -1318,12 +1319,12 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
           } else if (randA == 2) {
             // add a PowerBooster as the first attachment
             // add a scope as the first attachment
-            pB = new PowerBooster(c);
+            pb = new PowerBooster(c);
             randA = (int) (Math.random() * 4);
             // try to add a second attachment
             if (randA == 0) {
               // add a scope
-              s = new Scope(pB);
+              s = new Scope(pb);
               tempIcon = (ImageIcon) mapArray[randRow][randCol].getIcon();
               if (e.getWeapons(randRow, randCol)[0] == null) {
                 mapArray[randRow][randCol].setIcon(addFirstWeapon(tempIcon, 2));
@@ -1333,7 +1334,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
               e.addWeapon(s, randRow, randCol);
             } else if (randA == 1) {
               // add a Stabilizer
-              st = new Stabilizer(pB);
+              st = new Stabilizer(pb);
               tempIcon = (ImageIcon) mapArray[randRow][randCol].getIcon();
               if (e.getWeapons(randRow, randCol)[0] == null) {
                 mapArray[randRow][randCol].setIcon(addFirstWeapon(tempIcon, 2));
@@ -1343,14 +1344,14 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
               e.addWeapon(st, randRow, randCol);
             } else if (randA == 2) {
               // add a PowerBooster
-              pB = new PowerBooster(pB);
+              pb = new PowerBooster(pb);
               tempIcon = (ImageIcon) mapArray[randRow][randCol].getIcon();
               if (e.getWeapons(randRow, randCol)[0] == null) {
                 mapArray[randRow][randCol].setIcon(addFirstWeapon(tempIcon, 2));
               } else {
                 mapArray[randRow][randCol].setIcon(addSecondWeapon(tempIcon, 2));
               }
-              e.addWeapon(pB, randRow, randCol);
+              e.addWeapon(pb, randRow, randCol);
             } else {
               // no second attachment
               tempIcon = (ImageIcon) mapArray[randRow][randCol].getIcon();
@@ -1359,7 +1360,7 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
               } else {
                 mapArray[randRow][randCol].setIcon(addSecondWeapon(tempIcon, 1));
               }
-              e.addWeapon(pB, randRow, randCol);
+              e.addWeapon(pb, randRow, randCol);
             }
           } else {
             // no attachments
@@ -1425,9 +1426,12 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
     }
   }
 
+  /**
+   * Main.
+   */
   public static void main(String[] args) {
     try {
-      GUI gui = new GUI();
+      Gui gui = new Gui();
       e.addObserver(gui);
       // InvokerBuilder builder = new InvokerBuilder();
       // Invoker inv = builder.loadCommands();

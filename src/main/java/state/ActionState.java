@@ -6,15 +6,19 @@ import lifeform.LifeForm;
 public abstract class ActionState {
 
   protected Environment environment;
-  protected AIContext ai;
+  protected AiContext ai;
   protected LifeForm lifeForm;
-  
-  public ActionState(Environment e, AIContext ai, LifeForm l) {
+
+  /**
+   * Creates an action state
+   */
+  public ActionState(Environment e, AiContext ai, LifeForm l) {
     environment = e;
     this.ai = ai;
     lifeForm = l;
   }
-  
+
   public abstract void executeAction();
+
   public abstract void search();
 }

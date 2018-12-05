@@ -7,12 +7,9 @@ public class Human extends LifeForm {
   /**
    * Creates a new Human
    * 
-   * @param name
-   *          the name of the human
-   * @param lifePoints
-   *          the starting life points of the human
-   * @param armorPoints
-   *          the starting armor points of the human
+   * @param name        the name of the human
+   * @param lifePoints  the starting life points of the human
+   * @param armorPoints the starting armor points of the human
    */
   public Human(String name, int lifePoints, int armorPoints) {
     super(name, lifePoints, 5);
@@ -29,13 +26,13 @@ public class Human extends LifeForm {
   public int getArmorPoints() {
     return armorPoints;
   }
-  
+
   private void checkArmorPoints() {
     if (armorPoints < 0) {
       armorPoints = 0;
     }
   }
-  
+
   @Override
   public void takeHit(int damage) {
     int actualDamage = Math.max(0, damage - armorPoints);

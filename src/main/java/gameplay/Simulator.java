@@ -14,7 +14,7 @@ import recovery.RecoveryBehavior;
 import recovery.RecoveryFractional;
 import recovery.RecoveryLinear;
 import recovery.RecoveryNone;
-import state.AIContext;
+import state.AiContext;
 //import state.TestAIContext;
 import weapon.ChainGun;
 import weapon.Pistol;
@@ -26,12 +26,16 @@ import weapon.Weapon;
 
 public class Simulator implements TimerObserver {
 
-  private final Environment e;
+  private final Environment environment;
 
-  private List<AIContext> AIs = new ArrayList<>();
+  private List<AiContext> ais = new ArrayList<>();
 
-  public Simulator(Environment e, Timer timer, int numHumans, int numAliens) throws RecoveryRateException {
-    this.e = e;
+  /**
+   * Creates a simulator
+   */
+  public Simulator(Environment e, Timer timer, int numHumans, int numAliens)
+      throws RecoveryRateException {
+    this.environment = e;
     timer.addTimeObserver(this);
 
     // generate humans
@@ -43,7 +47,7 @@ public class Simulator implements TimerObserver {
 
       Point loc = getLifeFormSpawnableCell();
       e.addLifeForm(human, loc.y, loc.x);
-      AIs.add(new AIContext(e, human));
+      ais.add(new AiContext(e, human));
       e.updateCell(loc.y, loc.x);
     }
 
@@ -71,7 +75,7 @@ public class Simulator implements TimerObserver {
 
       Point loc = getLifeFormSpawnableCell();
       e.addLifeForm(alien, loc.y, loc.x);
-      AIs.add(new AIContext(e, alien));
+      ais.add(new AiContext(e, alien));
       e.updateCell(loc.y, loc.x);
     }
 
@@ -116,7 +120,7 @@ public class Simulator implements TimerObserver {
     Point loc = null;
 
     do {
-      CellInfo cellInfo = e.getRandomCell();
+      CellInfo cellInfo = environment.getRandomCell();
 
       if (!cellInfo.hasLife()) {
         loc = new Point(cellInfo.getCol(), cellInfo.getRow());
@@ -130,7 +134,7 @@ public class Simulator implements TimerObserver {
     Point loc = null;
 
     do {
-      CellInfo cellInfo = e.getRandomCell();
+      CellInfo cellInfo = environment.getRandomCell();
 
       if (!cellInfo.hasWeapon1() || !cellInfo.hasWeapon2()) {
         loc = new Point(cellInfo.getCol(), cellInfo.getRow());
@@ -142,6 +146,6 @@ public class Simulator implements TimerObserver {
 
   @Override
   public void updateTime(int time) {
-    AIs.forEach(ai -> ai.executeAction());
+    ais.forEach(ai -> ai.executeAction());
   }
 }

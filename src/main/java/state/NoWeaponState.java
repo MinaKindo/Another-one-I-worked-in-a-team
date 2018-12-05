@@ -3,12 +3,12 @@ package state;
 import environment.Environment;
 import environment.Cell;
 import lifeform.LifeForm;
-import state.AIContext;
+import state.AiContext;
 import weapon.Weapon;
 
 public class NoWeaponState extends ActionState {
 
-  public NoWeaponState(Environment e, AIContext ai, LifeForm l) {
+  public NoWeaponState(Environment e, AiContext ai, LifeForm l) {
     super(e, ai, l);
   }
 

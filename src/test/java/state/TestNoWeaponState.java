@@ -1,6 +1,6 @@
 package state;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
@@ -16,7 +16,7 @@ public class TestNoWeaponState {
   public void testWeapon() {
     Environment environment = Environment.getEnvironment(4, 4);
     LifeForm lifeForm = new MockLifeForm("Fred", 5);
-    AIContext ai = new AIContext(environment, lifeForm);
+    AiContext ai = new AiContext(environment, lifeForm);
     ai.setCurrentState(ai.getNoWeaponState());
     Weapon w1 = new Pistol();
     environment.addLifeForm(lifeForm, 1, 2);
@@ -29,7 +29,7 @@ public class TestNoWeaponState {
   public void testNoWeapon() {
     Environment environment = Environment.getEnvironment(4, 4);
     LifeForm lifeForm = new MockLifeForm("Fred", 5);
-    AIContext ai = new AIContext(environment, lifeForm);
+    AiContext ai = new AiContext(environment, lifeForm);
     environment.addLifeForm(lifeForm, 1, 2);
     ai.setCurrentState(ai.getNoWeaponState());
     ai.executeAction();
@@ -40,7 +40,7 @@ public class TestNoWeaponState {
   public void testDead() {
     Environment environment = Environment.getEnvironment(4, 4);
     LifeForm lifeForm = new MockLifeForm("Fred", 0);
-    AIContext ai = new AIContext(environment, lifeForm);
+    AiContext ai = new AiContext(environment, lifeForm);
     ai.setCurrentState(ai.getNoWeaponState());
     ai.executeAction();
     assertEquals(ai.getCurrentState(), ai.getDeadState());

@@ -1,6 +1,7 @@
 package state;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -17,7 +18,7 @@ public class TestOutOfAmmoState {
   public void testInitialization() {
     Environment environment = Environment.getEnvironment(4, 4);
     LifeForm lifeForm = new MockLifeForm("Fred", 5);
-    AIContext ai = new AIContext(environment, lifeForm);
+    AiContext ai = new AiContext(environment, lifeForm);
     ai.setCurrentState(ai.getOutOfAmmoState());
   }
   
@@ -25,7 +26,7 @@ public class TestOutOfAmmoState {
   public void testReload() throws WeaponException {
     Environment environment = Environment.getEnvironment(4, 4);
     LifeForm lifeForm = new MockLifeForm("Fred", 5);
-    AIContext ai = new AIContext(environment, lifeForm);
+    AiContext ai = new AiContext(environment, lifeForm);
     ai.setCurrentState(ai.getOutOfAmmoState());
     Weapon w1 = new Pistol();
     assertTrue(lifeForm.pickUpWeapon(w1));
@@ -39,7 +40,7 @@ public class TestOutOfAmmoState {
   public void testState() {
     Environment environment = Environment.getEnvironment(4, 4);
     LifeForm lifeForm = new MockLifeForm("Fred", 5);
-    AIContext ai = new AIContext(environment, lifeForm);
+    AiContext ai = new AiContext(environment, lifeForm);
     ai.setCurrentState(ai.getOutOfAmmoState());
     Weapon w1 = new Pistol();
     assertTrue(lifeForm.pickUpWeapon(w1));
@@ -51,7 +52,7 @@ public class TestOutOfAmmoState {
   public void testDead() {
     Environment environment = Environment.getEnvironment(4, 4);
     LifeForm lifeForm = new MockLifeForm("Fred", 0);
-    AIContext ai = new AIContext(environment, lifeForm);
+    AiContext ai = new AiContext(environment, lifeForm);
     ai.setCurrentState(ai.getOutOfAmmoState());
     ai.executeAction();
     assertEquals(ai.getCurrentState(), ai.getDeadState());

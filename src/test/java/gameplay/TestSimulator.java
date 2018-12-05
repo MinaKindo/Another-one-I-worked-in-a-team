@@ -1,6 +1,7 @@
 package gameplay;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
@@ -15,9 +16,9 @@ public class TestSimulator {
    */
   @Test
   public void testPopulateWorld() throws RecoveryRateException {
-    Environment e = Environment.getEnvironment(15, 10);
+    Environment e = Environment.getEnvironment(4, 4);
     SimpleTimer timer = new SimpleTimer(1000);
-    Simulator sim = new Simulator(e, timer, 15, 10);
+    Simulator sim = new Simulator(e, timer, 2, 1);
 
     int numLifeForms = 0;
     int numWeapons = 0;
@@ -38,7 +39,7 @@ public class TestSimulator {
       }
     }
 
-    assertEquals(15 + 10, numLifeForms);
-    assertEquals(15 + 10, numWeapons);
+    assertEquals(2 + 1, numLifeForms);
+    assertEquals(2 + 1, numWeapons);
   }
 }

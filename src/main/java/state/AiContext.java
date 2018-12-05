@@ -4,7 +4,7 @@ import environment.Environment;
 import lifeform.Alien;
 import lifeform.LifeForm;
 
-public class AIContext {
+public class AiContext {
 
   private ActionState hasWeaponState;
   private ActionState outOfAmmoState;
@@ -12,9 +12,12 @@ public class AIContext {
   private ActionState noWeaponState;
   private ActionState currentState;
 
-  private LifeForm l;
+  private LifeForm lifeForm;
 
-  public AIContext(Environment e, LifeForm l) {
+  /**
+   * Creates an AI context
+   */
+  public AiContext(Environment e, LifeForm l) {
     hasWeaponState = new HasWeaponState(e, this, l);
     outOfAmmoState = new OutOfAmmoState(e, this, l);
     deadState = new DeadState(e, this, l);
@@ -22,7 +25,7 @@ public class AIContext {
 
     currentState = noWeaponState;
 
-    this.l = l;
+    this.lifeForm = l;
   }
 
   public void executeAction() {

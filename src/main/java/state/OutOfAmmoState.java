@@ -2,11 +2,11 @@ package state;
 
 import environment.Environment;
 import lifeform.LifeForm;
-import state.AIContext;
+import state.AiContext;
 
 public class OutOfAmmoState extends ActionState {
 
-  public OutOfAmmoState(Environment e, AIContext ai, LifeForm l) {
+  public OutOfAmmoState(Environment e, AiContext ai, LifeForm l) {
     super(e, ai, l);
   }
 
@@ -24,7 +24,7 @@ public class OutOfAmmoState extends ActionState {
   @Override
   public void search() {
     // TODO Auto-generated method stub
-    
+
   }
 
 }

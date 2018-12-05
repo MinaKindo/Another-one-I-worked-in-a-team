@@ -11,7 +11,7 @@ import lifeform.LifeForm;
 
 public class HasWeaponState extends ActionState {
 
-  public HasWeaponState(Environment e, AIContext ai, LifeForm l) {
+  public HasWeaponState(Environment e, AiContext ai, LifeForm l) {
     super(e, ai, l);
   }
 
@@ -45,7 +45,7 @@ public class HasWeaponState extends ActionState {
     }
   }
 
-  public Point searchLife() throws EnvironmentException {
+  private Point searchLife() throws EnvironmentException {
     int closestX = lifeForm.getRow();
     int closestY = lifeForm.getCol();
     double closestDistance = 1000000000;

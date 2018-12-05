@@ -1,13 +1,15 @@
 
 package state;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import environment.Environment;
 import exceptions.RecoveryRateException;
-import lifeform.Alien;
 import lifeform.Human;
 import lifeform.LifeForm;
 import weapon.Pistol;
@@ -15,34 +17,41 @@ import weapon.Weapon;
 
 public class TestDeadState {
 
-	@Test
-	public void testWithWeapon() throws RecoveryRateException {
-		Environment e = Environment.getEnvironment(4, 4);
-		LifeForm h = new Human("bob", 10, 10);
-		Weapon pistol = new Pistol();
-		AIContext ai = new AIContext(e, h); 
-		h.pickUpWeapon(pistol);
-		assertTrue(h.hasWeapon());
-		h.takeHit(20);
-		ai.setCurrentState(ai.getDeadState());
-		ai.executeAction();
-		assertFalse(h.hasWeapon());
-		assertEquals(10, h.getCurrentLifePoints());
-		assertEquals(ai.getCurrentState(), ai.getNoWeaponState());
-		
-	}
-	
-	@Test
-	public void testWithoutWeapon() throws RecoveryRateException {
-		Environment e = Environment.getEnvironment(4, 4);
-		LifeForm h = new Human("bob", 10, 10);
-		AIContext ai = new AIContext(e, h); 
-		assertFalse(h.hasWeapon());
-		h.takeHit(20);
-		ai.setCurrentState(ai.getDeadState());
-		ai.executeAction();
-		assertFalse(h.hasWeapon());	
-		assertEquals(10, h.getCurrentLifePoints());
-		assertEquals(ai.getCurrentState(), ai.getNoWeaponState());
-	}
+  Environment environment = Environment.getEnvironment(4, 4);
+
+  @Before
+  public void testBefore() {
+    environment.clearBoard();
+  }
+
+  @Test
+  public void testWithWeapon() throws RecoveryRateException {
+    LifeForm h = new Human("bob", 10, 10);
+    environment.addLifeForm(h, 1, 1);
+    Weapon pistol = new Pistol();
+    h.pickUpWeapon(pistol);
+    assertTrue(h.hasWeapon());
+    h.takeHit(20);
+    AiContext ai = new AiContext(environment, h);
+    ai.setCurrentState(ai.getDeadState());
+    ai.executeAction();
+    assertFalse(h.hasWeapon());
+    assertEquals(10, h.getCurrentLifePoints());
+    assertEquals(ai.getCurrentState(), ai.getNoWeaponState());
+
+  }
+
+  @Test
+  public void testWithoutWeapon() throws RecoveryRateException {
+    LifeForm h = new Human("bob", 10, 10);
+    environment.addLifeForm(h, 1, 1);
+    AiContext ai = new AiContext(environment, h);
+    assertFalse(h.hasWeapon());
+    h.takeHit(20);
+    ai.setCurrentState(ai.getDeadState());
+    ai.executeAction();
+    assertFalse(h.hasWeapon());
+    assertEquals(10, h.getCurrentLifePoints());
+    assertEquals(ai.getCurrentState(), ai.getNoWeaponState());
+  }
 }
