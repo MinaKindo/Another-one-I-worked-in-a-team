@@ -28,7 +28,7 @@ public class TestDeadState {
 		ai.executeAction();
 		assertFalse(h.hasWeapon());
 		assertEquals(10, h.getCurrentLifePoints());
-		assertEquals(ai.getCurrentState(), ai.getHasNoWeaponsState());
+		assertEquals(ai.getCurrentState(), ai.getNoWeaponState());
 		
 	}
 	
@@ -43,6 +43,6 @@ public class TestDeadState {
 		ai.executeAction();
 		assertFalse(h.hasWeapon());	
 		assertEquals(10, h.getCurrentLifePoints());
-		assertEquals(ai.getCurrentState(), ai.getHasNoWeaponsState());
+		assertEquals(ai.getCurrentState(), ai.getNoWeaponState());
 	}
 }

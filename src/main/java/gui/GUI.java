@@ -71,8 +71,8 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
   final int WEAPON_SIZE = 7; // size of a weapon icon (circle)
   final int LIFEFORM_SIZE = 20; // size of an life form icon
 
-  static final int ROWS = 12;
-  static final int COLS = 12;
+  static final int ROWS = 7;  // 12
+  static final int COLS = 7;  // 12
 
   public GUI() throws RecoveryRateException {
 
@@ -1433,17 +1433,16 @@ public class GUI extends JFrame implements ActionListener, EnvironmentObserver {
       // Invoker inv = builder.loadCommands();
 
       // simulator starts here for AI vs AI play
-      SimpleTimer timer = new SimpleTimer(100);
+      SimpleTimer timer = new SimpleTimer(1000);
 
-      // 15 humans
-      // 10 Aliens
-      Simulator sim = new Simulator(e, timer, 15, 10);
+      // 2 humans
+      // 3 Aliens
+      Simulator sim = new Simulator(e, timer, 3, 3);
 
       // start the timer
       timer.start();
 
     } catch (RecoveryRateException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
   }

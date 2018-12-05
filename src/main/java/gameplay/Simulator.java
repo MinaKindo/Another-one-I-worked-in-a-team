@@ -37,8 +37,8 @@ public class Simulator implements TimerObserver {
     // generate humans
     for (int i = 0; i < numHumans; i++) {
 
-      int lifePts = (int) (Math.random() * 6) + 5; // [5, 10]
-      int armorPts = (int) (Math.random() * 10); // [0, 9]
+      int lifePts = (int) (Math.random() * 51) + 50; // [50, 100]
+      int armorPts = (int) (Math.random() * 6); // [0, 5]
       Human human = new Human("AIHuman_" + i, lifePts, armorPts);
 
       Point loc = getLifeFormSpawnableCell();
@@ -50,23 +50,24 @@ public class Simulator implements TimerObserver {
     // generate aliens
     for (int i = 0; i < numAliens; i++) {
 
-      int lifePts = (int) (Math.random() * 6) + 5; // [5, 10]
+      int lifePts = (int) (Math.random() * 51) + 50; // [50, 100]
 
       RecoveryBehavior rb = null;
       int rbChance = (int) (Math.random() * 3); // [0, 2]
       if (rbChance == 0) {
         rb = new RecoveryNone();
       } else if (rbChance == 1) {
-        int recoveryAmt = (int) (Math.random() * 3) + 1; // [1, 3]
+        int recoveryAmt = (int) (Math.random() * 30) + 1; // [1, 10]
         rb = new RecoveryLinear(recoveryAmt);
       } else {
-        double recoveryFrac = Math.random() * 2 + 1; // [1, 3)
+        double recoveryFrac = Math.random() * 9 + 1; // [1, 10)
         rb = new RecoveryFractional(recoveryFrac);
       }
 
       int recoveryRate = (int) (Math.random() * 3) + 1; // [1, 3]
 
       Alien alien = new Alien("AIAlien_" + i, lifePts, rb, recoveryRate);
+      timer.addTimeObserver(alien);
 
       Point loc = getLifeFormSpawnableCell();
       e.addLifeForm(alien, loc.y, loc.x);
@@ -105,6 +106,7 @@ public class Simulator implements TimerObserver {
       }
 
       Point loc = getWeaponSpawnableCell();
+      timer.addTimeObserver(weapon);
       e.addWeapon(weapon, loc.y, loc.x);
       e.updateCell(loc.y, loc.x);
     }
